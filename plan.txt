@@ -5,7 +5,7 @@ ai-onboarding-saas
 │   ├── summarizer.py           # Generates code summaries
 │   ├── question_generator.py   # Creates challenges & quizzes
 │   ├── auth.py                 # GitHub OAuth authentication
-│   ├── database.py(optional)             # PostgreSQL connection
+│   ├── database.py  (optional)           # PostgreSQL connection
 │   ├── requirements.txt        # Dependencies
 │
 │── frontend/
@@ -24,5 +24,3 @@ ai-onboarding-saas
 │── Dockerfile                  # Containerization
 │── docker-compose.yml           # Multi-container setup (DB, Backend, Frontend)
 │── .env                         # Environment variables
-
-Project Overview 
