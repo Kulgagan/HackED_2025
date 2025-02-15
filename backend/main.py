@@ -1,2 +1,8 @@
 #FastAPI Server
-from github_analyzer import...
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"Hello" : "World"} 
