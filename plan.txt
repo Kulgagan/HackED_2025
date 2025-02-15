@@ -24,3 +24,5 @@ ai-onboarding-saas
 │── Dockerfile                  # Containerization
 │── docker-compose.yml           # Multi-container setup (DB, Backend, Frontend)
 │── .env                         # Environment variables
+
+Project Overview 
