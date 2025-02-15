@@ -1,0 +1,26 @@
+ai-onboarding-saas
+│── backend/
+│   ├── main.py                 # FastAPI server
+│   ├── github_analyzer.py      # Fetches & analyzes repo
+│   ├── summarizer.py           # Generates code summaries
+│   ├── question_generator.py   # Creates challenges & quizzes
+│   ├── auth.py                 # GitHub OAuth authentication
+│   ├── database.py             # PostgreSQL connection
+│   ├── requirements.txt        # Dependencies
+│
+│── frontend/
+│   ├── pages/
+│   │   ├── index.tsx           # Main dashboard
+│   │   ├── quiz.tsx            # Quiz UI
+│   ├── components/
+│   │   ├── SummaryCard.tsx     # Displays generated summaries
+│   │   ├── QuizCard.tsx        # Interactive coding quizzes
+│   ├── api.ts                  # API request handler
+│
+│── database/
+│   ├── schema.sql              # PostgreSQL schema
+│
+│── README.md                   # Documentation
+│── Dockerfile                  # Containerization
+│── docker-compose.yml           # Multi-container setup (DB, Backend, Frontend)
+│── .env                         # Environment variables
