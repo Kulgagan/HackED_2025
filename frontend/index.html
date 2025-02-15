@@ -3,14 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TypeScript Website</title>
+    <title>My Website</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Welcome to My TypeScript Website</h1>
-    <button id="clickMe">Click Me</button>
-    <p id="message"></p>
-    
-    <script src="dist/script.js"></script>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="page1.html">Page 1</a></li>
+            <li><a href="page2.html">Page 2</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">More</a>
+                <div class="dropdown-content">
+                    <a href="page1.html">Page 1</a>
+                    <a href="page2.html">Page 2</a>
+                    <a href="#">Another Link</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <h1>Welcome to My Website</h1>
+    <p>This is the homepage of my awesome website!</p>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

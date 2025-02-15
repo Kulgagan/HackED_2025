@@ -1,7 +1,5 @@
 from fastapi import FastAPI, HTTPException
 import requests 
-import os
-import git
 
 """
 Explanation
