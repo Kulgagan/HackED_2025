@@ -1,12 +1,12 @@
 from dotenv import load_dotenv
-from openai import OpenAI, completions
+import ollama
 import os 
-load_dotenv()
 
+load_dotenv()
 
 class summarizer():
 
-    engine = 'gpt-4o'
+    engine = 'llama2'
 
     # constructor
     def __init__(self):
@@ -21,17 +21,20 @@ class summarizer():
     # summarize 
     def average(self, collection, code):
 
-        client = OpenAI(ai_key = self.ai_key)
+        client = ollama.Client()
         prompt = code
         # make request
 
-        completetion = client.chat.completions.create(
+        response = client.chat(
             model = self.engine,
             messages = [{"role": "system", "content": "You are a analyzer that analyzes git hub repos."},
                         {"role": "user", "content": prompt}]
         )
 
-        summarized = completions.choices[0].message.content
+        if 'message' in response:
+            summarized = response['message']['content']
+        else:
+            summarized = "No summary generated."
 
         client.close()
 
