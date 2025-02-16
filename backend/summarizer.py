@@ -19,7 +19,7 @@ class summarizer():
         return os.getenv('ai_key')
 
     # summarize 
-    def average(self, collection, code):
+    def summarize(self, collection, code):
 
         client = ollama.Client()
         prompt = code
