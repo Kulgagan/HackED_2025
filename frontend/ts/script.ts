@@ -1,36 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Banner Shrinking Effect
-    const banner = document.getElementById("banner");
-    if (banner) {
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                banner.classList.add("shrink");
-            } else {
-                banner.classList.remove("shrink");
+    const dropdowns = document.querySelectorAll(".dropdown");
+
+    dropdowns.forEach((dropdown) => {
+        dropdown.addEventListener("mouseenter", function (this: HTMLElement) {
+            const dropdownContent = this.querySelector(".dropdown-content") as HTMLElement;
+            if (dropdownContent) {
+                dropdownContent.style.display = "block";
             }
         });
-    }
 
-    // Dropdown Menu - Close if clicking outside
-    window.onclick = function(event: MouseEvent) {
-        if (!(event.target as HTMLElement).matches(".dropbtn")) {
-            document.querySelectorAll(".dropdown-content").forEach(dropdown => {
-                (dropdown as HTMLElement).style.display = "none";
-            });
-        }
-    };
-
-    // Ensure dropdown remains functional
-    const dropdown = document.querySelector(".dropdown");
-    if (dropdown) {
-        dropdown.addEventListener("mouseenter", function() {
+        dropdown.addEventListener("mouseleave", function (this: HTMLElement) {
             const dropdownContent = this.querySelector(".dropdown-content") as HTMLElement;
-            dropdownContent.style.display = "block";
+            if (dropdownContent) {
+                dropdownContent.style.display = "none";
+            }
         });
-
-        dropdown.addEventListener("mouseleave", function() {
-            const dropdownContent = this.querySelector(".dropdown-content") as HTMLElement;
-            dropdownContent.style.display = "none";
-        });
-    }
+    });
 });
