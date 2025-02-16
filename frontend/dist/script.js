@@ -13,18 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     // Dropdown Menu Interaction
-    const exploreButton = document.querySelector(".dropbtn");
+    const dropbtn = document.querySelector(".dropbtn");
     const dropdownContent = document.querySelector(".dropdown-content");
-    // Toggle dropdown on Explore button click
-    exploreButton.addEventListener("click", (event) => {
-        event.stopPropagation(); // Prevent click from propagating to window
-        dropdownContent.classList.toggle("show");
-    });
-    // Close dropdown if user clicks outside the button or dropdown
-    window.addEventListener("click", (event) => {
-        if (!exploreButton.contains(event.target) &&
-            !dropdownContent.contains(event.target)) {
-            dropdownContent.classList.remove("show");
-        }
-    });
+    if (dropbtn && dropdownContent) {
+        // Toggle dropdown on click
+        dropbtn.addEventListener("click", (event) => {
+            event.stopPropagation();
+            dropdownContent.classList.toggle("show");
+        });
+        // Close dropdown if user clicks outside
+        window.addEventListener("click", (event) => {
+            if (!dropbtn.contains(event.target) &&
+                !dropdownContent.contains(event.target)) {
+                dropdownContent.classList.remove("show");
+            }
+        });
+    }
 });
