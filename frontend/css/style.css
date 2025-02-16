@@ -21,7 +21,7 @@
     background-color: #f1efe7;  /* Slightly lighter beige for header */
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: height 0.3s ease;
@@ -38,31 +38,30 @@
 .shrink {
     height: 80px !important;
 }
-
 .shrink #logo {
     height: 60px;
 }
 
 /* =========================
-   Dropdown Button
+   Dropdown Button and Container
    ========================= */
-.dropbtn {
-    background-color: #fff;
-    color: #000;
-    padding: 12px 18px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    border-radius: 5px;
+/* Position the entire dropdown container relative to the header */
+.dropdown {
     position: absolute;
-    top: 52px;  /* Positioned 52px from the top */
-    left: 50px; /* Positioned 50px from the left */
+    top: 52px;    /* 52px from the top of the header */
+    left: 50px;   /* 50px from the left of the header */
+    z-index: 2000; /* Ensure it's on top */
 }
 
-/* Position the dropdown inside the header */
-.dropdown {
-    position: relative;
-    display: inline-block;
+/* Style the Explore button */
+.dropbtn {
+    background-color: #fff;  /* White background */
+    color: #000;             /* Black text */
+    padding: 12px 18px;
+    font-size: 16px;
+    border: 1px solid #ccc;  /* Subtle border */
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 /* =========================
@@ -71,7 +70,7 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    top: 100%;
+    top: 100%; /* Immediately below the button */
     left: 0;
     background-color: #fff;
     min-width: 180px;
@@ -79,7 +78,6 @@
     border-radius: 5px;
 }
 
-/* Dropdown links */
 .dropdown-content a {
     display: block;
     color: #000;
@@ -88,7 +86,6 @@
     text-align: left;
 }
 
-/* Hover effect */
 .dropdown-content a:hover {
     background-color: #ddd;
 }
