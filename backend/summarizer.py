@@ -11,7 +11,7 @@ class Summarizer:
 
     def summarize(self, code: str):
         """Summarizes code using Ollama."""
-        prompt = f"Summarize this GitHub code:\n\n{code}"
+        prompt = f"Summarize this GitHub code:{code}"
 
         response = ollama.chat(
             model=self.engine,
