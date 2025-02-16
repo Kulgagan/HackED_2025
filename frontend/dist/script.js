@@ -1,6 +1,6 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", () => {
-    // Get elements
+    // Get essential elements
     const header = document.getElementById("banner");
     const dropdownBtn = document.getElementById("dropdown-btn");
     const dropdownContent = document.getElementById("dropdown-content");
@@ -8,28 +8,25 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Missing essential elements in the DOM.");
         return;
     }
-    // Function to toggle dropdown menu
-    function toggleDropdown(event) {
-        event.stopPropagation(); // Prevent closing when clicking on the button itself
+    // Toggle the dropdown menu on button click
+    dropdownBtn.addEventListener("click", (event) => {
+        event.stopPropagation(); // Prevents the document click from immediately closing the dropdown
         dropdownContent.classList.toggle("show");
-    }
-    // Close dropdown when clicking outside
-    function closeDropdown(event) {
-        if (!dropdownBtn.contains(event.target) && !dropdownContent.contains(event.target)) {
+    });
+    // Close the dropdown menu when clicking outside of it
+    document.addEventListener("click", (event) => {
+        if (!dropdownBtn.contains(event.target) &&
+            !dropdownContent.contains(event.target)) {
             dropdownContent.classList.remove("show");
         }
-    }
-    // Shrink header on scroll
-    function handleScroll() {
+    });
+    // Handle header shrinking on scroll
+    window.addEventListener("scroll", () => {
         if (window.scrollY > 50) {
             header.classList.add("shrink");
         }
         else {
             header.classList.remove("shrink");
         }
-    }
-    // Attach event listeners
-    dropdownBtn.addEventListener("click", toggleDropdown);
-    document.addEventListener("click", closeDropdown);
-    window.addEventListener("scroll", handleScroll);
+    });
 });
