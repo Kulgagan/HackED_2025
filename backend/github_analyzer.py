@@ -19,9 +19,6 @@ def fetch_repo_name(repo_url: str):
     response = requests.get(api_url, headers=headers)
 
     # Debugging: Print the API response
-    print(f"API URL: {api_url}")
-    print(f"Response Status Code: {response.status_code}")
-    print(f"Response Body: {response.text}")
 
     if response.status_code != 200:
         raise HTTPException(status_code=404, detail="Repo not found")
@@ -36,9 +33,6 @@ def list_repo_files(repo_name: str):
     response = requests.get(api_url, headers=headers)
 
     # Debugging: Print the API response
-    print(f"API URL: {api_url}")
-    print(f"Response Status Code: {response.status_code}")
-    print(f"Response Body: {response.text}")
 
     if response.status_code != 200:
         raise HTTPException(status_code=404, detail="Could not fetch repo contents")
