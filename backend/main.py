@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from backend.github_analyzer import fetch_repo_name, list_repo_files, read_file_contents
 from backend.summarizer import Summarizer
 from pydantic import BaseModel
+import time
 
 app = FastAPI()
 
@@ -27,13 +28,19 @@ def analyze_repo(request: RepoUrlRequest):
         if content: 
             summary = summarizer.summarize(content) 
             summaries[file_path] = summary
-
-    return {
+    
+    user_info = {
         "repo_name": repo_data["name"],
         "owner": repo_data["owner"]["login"],
         "description": repo_data.get("description", "No description"),
         "stars": repo_data["stargazers_count"],
         "language": repo_data["language"],
-        "code_files": code_files,
+        "code_files": code_files
+    }
+    Summary = {
         "summaries": summaries  # Include summaries in the response
     }
+
+    
+
+    return Summary
