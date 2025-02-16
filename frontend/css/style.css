@@ -1,95 +1,114 @@
-/* Main header styling */
-#banner {
+/* =========================
+   Global & Body
+   ========================= */
+   body {
+    margin: 0;
+    padding: 0;
+    background-color: #f9f6f1; /* Light beige background */
+    overflow-x: hidden;        /* Prevent horizontal scrolling */
+    font-family: Arial, sans-serif;
+  }
+  
+  /* =========================
+     Header (Banner)
+     ========================= */
+  #banner {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 150px;
-    background-color: rgba(241, 239, 231, 255); /* light beige */
+    background-color: #f1efe7;  /* Slightly lighter beige for header */
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px 50px;
+    justify-content: center;    /* Center the logo horizontally */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Shrink effect on scroll */
-.shrink {
-    height: 70px;
-    padding: 5px 30px;
-}
-
-/* Logo Styling */
-#logo {
-    height: 100px;
+  }
+  
+  #logo {
+    height: 120px;
     transition: height 0.3s ease;
-}
-
-.shrink #logo {
-    height: 50px;
-}
-
-/* Fix: Ensure scrolling works */
-main {
-    margin-top: 180px; /* Push content down */
-    padding: 20px;
-    min-height: 150vh; /* Ensures page is long enough to scroll */
-}
-
-/* About Section */
-#about {
-    max-width: 800px;
-    margin: 50px auto;
-    text-align: center;
-}
-
-/* Dropdown menu button styling */
-.dropbtn {
+  }
+  
+  /* Shrink the header on scroll */
+  .shrink {
+    height: 80px !important;
+  }
+  
+  .shrink #logo {
+    height: 60px;
+  }
+  
+  /* =========================
+     Dropdown Button
+     ========================= */
+  /* 
+     We position the button absolutely within #banner,
+     based on your scaled coords (X: 1390, Y: 157), 
+     but moved a bit higher (Y ~140).
+  */
+  .dropbtn {
     position: absolute;
-    top: 157px; /* Y position from the "Scaled" values */
-    left: 1390px; /* X position from the "Scaled" values */
-    background-color: #4CAF50; /* Green */
-    color: white;
-    padding: 16px;
+    top: 140px;   /* Slightly higher than 157px */
+    left: 1390px; /* X: 1390 from scaled coords */
+    background-color: #fff;   /* White background */
+    color: #000;              /* Black text */
+    padding: 10px 15px;
     font-size: 16px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
-    z-index: 2;
-}
-
-/* Dropdown content styling */
-.dropdown-content {
+  }
+  
+  /* =========================
+     Dropdown Content
+     ========================= */
+  .dropdown-content {
     display: none;
     position: absolute;
-    top: 60px; /* Adjust to fit dropdown */
+    top: 40px; /* So it appears just below the button */
     left: 0;
-    background-color: #f9f9f9;
+    background-color: #fff;
     min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-/* Show dropdown when clicked */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 4px;
+  }
+  
+  .dropdown-content a {
+    display: block;
+    color: #000;
+    padding: 10px;
     text-decoration: none;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  /* Show dropdown on .show class toggle */
+  .show {
     display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
-
-.show {
-    display: block;
-}
-
-/* Hide horizontal scroll */
-body {
-    overflow-x: hidden;
-}
+  }
+  
+  /* =========================
+     Main Content
+     ========================= */
+  main {
+    margin-top: 150px; /* Push content below fixed header */
+    padding: 20px;
+    min-height: 100vh;
+    text-align: center;
+  }
+  
+  /* =========================
+     Footer
+     ========================= */
+  footer {
+    background-color: #e2ddc9; /* Darker beige than header */
+    text-align: center;
+    padding: 20px;
+  }
+  
 
