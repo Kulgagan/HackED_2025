@@ -3,12 +3,6 @@ import requests
 import base64
 from dotenv import load_dotenv
 import os
-"""
-Explanation
-1. post expects a string
-2. get the repo name from repo_url
-3. use that in api url 
-"""
 load_dotenv()
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 app = FastAPI()
@@ -16,7 +10,7 @@ app = FastAPI()
 
 @app.post("/analyze")
 def fetch_repo_name(repo_url: str):
-    repo_name = repo_url.split("github.com/")[-1]
+    repo_name = repo_url.split("github.com/")[-1]   #this wouldnt work. Fetch from website
     if not repo_name:
         raise HTTPException(status_code=400, detail="Invalid GitHub Repo URL")
 

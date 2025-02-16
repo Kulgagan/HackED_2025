@@ -4,7 +4,7 @@ import ollama
 load_dotenv()
 
 class Summarizer:
-    engine = 'llama3.1'  # Use 'mistral' or 'llama2' if needed
+    engine = 'llama3.1'  # Adjust model name if necessary
 
     def __init__(self):
         pass  # No API key needed for Ollama
@@ -21,6 +21,7 @@ class Summarizer:
             ]
         )
 
-        return response['message']['content'] if 'message' in response else "No summary generated."
-
-    
+        if 'messages' in response and len(response['messages']) > 0:
+            return response['messages'][-1]['content']
+        
+        return "No summary generated."
