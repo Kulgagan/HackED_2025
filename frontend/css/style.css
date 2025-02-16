@@ -7,12 +7,12 @@
     background-color: #f9f6f1; /* Light beige background */
     overflow-x: hidden;        /* Prevent horizontal scrolling */
     font-family: Arial, sans-serif;
-  }
-  
-  /* =========================
-     Header (Banner)
-     ========================= */
-  #banner {
+}
+
+/* =========================
+   Header (Banner)
+   ========================= */
+#banner {
     position: fixed;
     top: 0;
     left: 0;
@@ -21,93 +21,76 @@
     background-color: #f1efe7;  /* Slightly lighter beige for header */
     display: flex;
     align-items: center;
-    justify-content: center;    /* Center the logo horizontally */
+    justify-content: space-between;  /* Space between logo & button */
+    padding: 0 50px;  /* Adjust padding for positioning */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: height 0.3s ease;
     z-index: 1000;
-  }
-  
-  #logo {
+}
+
+/* Logo inside header */
+#logo {
     height: 120px;
     transition: height 0.3s ease;
-  }
-  
-  /* Shrink the header on scroll */
-  .shrink {
+}
+
+/* Shrink the header on scroll */
+.shrink {
     height: 80px !important;
-  }
-  
-  .shrink #logo {
+}
+
+.shrink #logo {
     height: 60px;
-  }
-  
-  /* =========================
-     Dropdown Button
-     ========================= */
-  /* 
-     We position the button absolutely within #banner,
-     based on your scaled coords (X: 1390, Y: 157), 
-     but moved a bit higher (Y ~140).
-  */
-  .dropbtn {
-    position: absolute;
-    top: 140px;   /* Slightly higher than 157px */
-    left: 1390px; /* X: 1390 from scaled coords */
-    background-color: #fff;   /* White background */
-    color: #000;              /* Black text */
-    padding: 10px 15px;
+}
+
+/* =========================
+   Dropdown Button
+   ========================= */
+.dropbtn {
+    background-color: #fff;  /* White background */
+    color: #000;             /* Black text */
+    padding: 12px 18px;
     font-size: 16px;
-    border: none;
+    border: 1px solid #ccc;  /* Add subtle border */
     cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  /* =========================
-     Dropdown Content
-     ========================= */
-  .dropdown-content {
+    border-radius: 5px;
+    position: relative;  /* Relative to the dropdown */
+}
+
+/* Position the dropdown inside the header */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* =========================
+   Dropdown Content
+   ========================= */
+.dropdown-content {
     display: none;
     position: absolute;
-    top: 40px; /* So it appears just below the button */
+    top: 100%; /* Place directly below button */
     left: 0;
     background-color: #fff;
-    min-width: 160px;
+    min-width: 180px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    border-radius: 4px;
-  }
-  
-  .dropdown-content a {
+    border-radius: 5px;
+}
+
+/* Dropdown links */
+.dropdown-content a {
     display: block;
     color: #000;
-    padding: 10px;
+    padding: 12px;
     text-decoration: none;
-  }
-  
-  .dropdown-content a:hover {
+    text-align: left;
+}
+
+/* Hover effect */
+.dropdown-content a:hover {
     background-color: #ddd;
-  }
-  
-  /* Show dropdown on .show class toggle */
-  .show {
-    display: block;
-  }
-  
-  /* =========================
-     Main Content
-     ========================= */
-  main {
-    margin-top: 150px; /* Push content below fixed header */
-    padding: 20px;
-    min-height: 100vh;
-    text-align: center;
-  }
-  
-  /* =========================
-     Footer
-     ========================= */
-  footer {
-    background-color: #e2ddc9; /* Darker beige than header */
-    text-align: center;
-    padding: 20px;
-  }
-  
+}
+
+/* Show dropdown when .show is added */
+.dropdown-content.show {
+    display:
