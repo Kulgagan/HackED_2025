@@ -1,7 +1,12 @@
 from fastapi import FastAPI
-from github_analyzer import fetch_repo_name, list_repo_files, read_file_contents
-from summarizer import sum
+from backend.github_analyzer import fetch_repo_name, list_repo_files, read_file_contents
+from backend.summarizer import Summarizer
 app = FastAPI()
+
+
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the AI Onboarding API!"}
 
 @app.post("/analyze")
 def analyze_repo(repo_url: str): 
@@ -9,7 +14,7 @@ def analyze_repo(repo_url: str):
     repo_name = repo_data["full_name"] 
     code_files = list_repo_files(repo_name)
 
-    summarizer = sum()
+    summarizer = Summarizer()
     summaries = {}
     
     for file_path in code_files: 

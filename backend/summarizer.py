@@ -1,43 +1,26 @@
 from dotenv import load_dotenv
 import ollama
-import os 
 
 load_dotenv()
 
-class sum():
+class Summarizer:
+    engine = 'llama3.1'  # Use 'mistral' or 'llama2' if needed
 
-    engine = 'llama2'
-
-    # constructor
     def __init__(self):
+        pass  # No API key needed for Ollama
 
-        self.ai_key = self.get_api_key()
-    
-    # gets api key
-    def get_api_key(self):
+    def summarize(self, code: str):
+        """Summarizes code using Ollama."""
+        prompt = f"Summarize this GitHub code:\n\n{code}"
 
-        return os.getenv('ai_key')
-
-    # summarize 
-    def Summarize(self, collection, code:str):
-
-        client = ollama.Client()
-        prompt = code
-        # make request
-
-        response = client.chat(
-            model = self.engine,
-            messages = [{"role": "system", "content": "You are a analyzer that analyzes git hub repos."},
-                        {"role": "user", "content": prompt}]
+        response = ollama.chat(
+            model=self.engine,
+            messages=[
+                {"role": "system", "content": "You are a code analyzer that summarizes GitHub repositories."},
+                {"role": "user", "content": prompt}
+            ]
         )
 
-        if 'message' in response:
-            summarized = response['message']['content']
-        else:
-            summarized = "No summary generated."
-
-        client.close()
-
-        return summarized
+        return response['message']['content'] if 'message' in response else "No summary generated."
 
     
