@@ -36,3 +36,4 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", closeDropdown);
     window.addEventListener("scroll", handleScroll);
 });
+
