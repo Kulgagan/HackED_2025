@@ -22,3 +22,29 @@ window.onclick = function (event) {
         });
     }
 };
+document.addEventListener("DOMContentLoaded", function () {
+    const banner = document.getElementById("banner");
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > 50) {
+            banner === null || banner === void 0 ? void 0 : banner.classList.add("shrink");
+        }
+        else {
+            banner === null || banner === void 0 ? void 0 : banner.classList.remove("shrink");
+        }
+    });
+});
+// Dropdown Menu Interaction
+const dropdown = document.querySelector(".dropdown");
+dropdown.addEventListener("click", function () {
+    const dropdownContent = this.querySelector(".dropdown-content");
+    dropdownContent.classList.toggle("show");
+});
+// Close dropdown if user clicks outside
+window.onclick = function (event) {
+    if (!event.target.matches(".dropbtn")) {
+        document.querySelectorAll(".dropdown-content").forEach(dropdown => {
+            dropdown.classList.remove("show");
+        });
+    }
+};
+;
