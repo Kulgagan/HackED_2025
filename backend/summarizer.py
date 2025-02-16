@@ -4,7 +4,7 @@ import os
 
 load_dotenv()
 
-class summarizer():
+class sum():
 
     engine = 'llama2'
 
@@ -19,7 +19,7 @@ class summarizer():
         return os.getenv('ai_key')
 
     # summarize 
-    def average(self, collection, code):
+    def Summarize(self, collection, code:str):
 
         client = ollama.Client()
         prompt = code

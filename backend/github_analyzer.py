@@ -1,15 +1,18 @@
 from fastapi import FastAPI, HTTPException
 import requests 
-
+import base64
+from dotenv import load_dotenv
+import os
 """
 Explanation
 1. post expects a string
 2. get the repo name from repo_url
 3. use that in api url 
 """
+load_dotenv()
+GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 app = FastAPI()
 
-GITHUB_TOKEN = "find the token" #get ur token
 @app.post("/analyze")
 def fetch_repo_name(repo_url:str):     #expects a stirng
 
@@ -20,7 +23,7 @@ def fetch_repo_name(repo_url:str):     #expects a stirng
     
     api_url = f"https://api.github.com/repos/{repo_name}"
     headers = {"Authorization": f"token {GITHUB_TOKEN}"}    #whats going on in these 2
-    response = requests.get(api_url, headers)
+    response = requests.get(api_url, headers= headers)
 
     
     if response.status_code != 200:
@@ -40,9 +43,7 @@ def list_repo_files(repo_name: str):
         raise HTTPException(status_code=404, detail = "could not fetch repo contents")
     
     files = response.json()
-    for file in files: 
-        if file["path"].endswith((".py", ".js")):
-            return file["path"]
+    return [file["path"] for file in files if file["path"].endswith((".py", ".js"))]
         
 def read_file_contents(repo_name: str, file_path: str): 
     api_url = f"https://api.github.com/repos/{repo_name}/contents/{file_path}"
@@ -52,4 +53,5 @@ def read_file_contents(repo_name: str, file_path: str):
     if response.status_code != 200:
         return None
     
-    return response.json().get("content", "")
+    content = response.json().get("content", "")
+    return base64.b64decode(content).decode("utf-8")
