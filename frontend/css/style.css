@@ -55,8 +55,8 @@
     cursor: pointer;
     border-radius: 5px;
     position: absolute;
-    top: 52px;  /* Positioned 52px from the top */
-    left: 50px; /* Positioned 50px from the left */
+    top: 500px;  /* Positioned 52px from the top */
+    left: 500px; /* Positioned 50px from the left */
 }
 
 /* Position the dropdown inside the header */

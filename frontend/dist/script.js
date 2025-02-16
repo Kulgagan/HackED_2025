@@ -1,5 +1,4 @@
 "use strict";
-// Wait for the DOM to fully load
 document.addEventListener("DOMContentLoaded", () => {
     // Get elements
     const header = document.getElementById("banner");
@@ -10,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
     // Function to toggle dropdown menu
-    function toggleDropdown() {
+    function toggleDropdown(event) {
+        event.stopPropagation(); // Prevent closing when clicking on the button itself
         dropdownContent.classList.toggle("show");
     }
     // Close dropdown when clicking outside
