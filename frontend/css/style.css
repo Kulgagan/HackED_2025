@@ -51,8 +51,8 @@
   */
   .dropbtn {
     position: absolute;
-    top: 100px;   /* Slightly higher than 157px */
-    left: 1390px; /* X: 1390 from scaled coords */
+    top: 55px;   /* Slightly higher than 157px */
+    left: 100px; /* X: 1390 from scaled coords */
     background-color: #fff;   /* White background */
     color: #000;              /* Black text */
     padding: 10px 15px;
