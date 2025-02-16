@@ -1,32 +1,35 @@
 "use strict";
+// Wait for the DOM to fully load
 document.addEventListener("DOMContentLoaded", () => {
-    // Shrinking header on scroll
-    const banner = document.getElementById("banner");
-    if (banner) {
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                banner.classList.add("shrink");
-            }
-            else {
-                banner.classList.remove("shrink");
-            }
-        });
+    // Get elements
+    const header = document.getElementById("banner");
+    const dropdownBtn = document.getElementById("dropdown-btn");
+    const dropdownContent = document.getElementById("dropdown-content");
+    if (!header || !dropdownBtn || !dropdownContent) {
+        console.error("Missing essential elements in the DOM.");
+        return;
     }
-    // Dropdown Menu Interaction
-    const dropbtn = document.querySelector(".dropbtn");
-    const dropdownContent = document.querySelector(".dropdown-content");
-    if (dropbtn && dropdownContent) {
-        // Toggle dropdown on click
-        dropbtn.addEventListener("click", (event) => {
-            event.stopPropagation();
-            dropdownContent.classList.toggle("show");
-        });
-        // Close dropdown if user clicks outside
-        window.addEventListener("click", (event) => {
-            if (!dropbtn.contains(event.target) &&
-                !dropdownContent.contains(event.target)) {
-                dropdownContent.classList.remove("show");
-            }
-        });
+    // Function to toggle dropdown menu
+    function toggleDropdown() {
+        dropdownContent.classList.toggle("show");
     }
+    // Close dropdown when clicking outside
+    function closeDropdown(event) {
+        if (!dropdownBtn.contains(event.target) && !dropdownContent.contains(event.target)) {
+            dropdownContent.classList.remove("show");
+        }
+    }
+    // Shrink header on scroll
+    function handleScroll() {
+        if (window.scrollY > 50) {
+            header.classList.add("shrink");
+        }
+        else {
+            header.classList.remove("shrink");
+        }
+    }
+    // Attach event listeners
+    dropdownBtn.addEventListener("click", toggleDropdown);
+    document.addEventListener("click", closeDropdown);
+    window.addEventListener("scroll", handleScroll);
 });

@@ -21,8 +21,8 @@
     background-color: #f1efe7;  /* Slightly lighter beige for header */
     display: flex;
     align-items: center;
-    justify-content: space-between;  /* Space between logo & button */
-    padding: 0 50px;  /* Adjust padding for positioning */
+    justify-content: space-between;
+    padding: 0 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: height 0.3s ease;
     z-index: 1000;
@@ -47,14 +47,16 @@
    Dropdown Button
    ========================= */
 .dropbtn {
-    background-color: #fff;  /* White background */
-    color: #000;             /* Black text */
+    background-color: #fff;
+    color: #000;
     padding: 12px 18px;
     font-size: 16px;
-    border: 1px solid #ccc;  /* Add subtle border */
+    border: 1px solid #ccc;
     cursor: pointer;
     border-radius: 5px;
-    position: relative;  /* Relative to the dropdown */
+    position: absolute;
+    top: 52px;  /* Positioned 52px from the top */
+    left: 50px; /* Positioned 50px from the left */
 }
 
 /* Position the dropdown inside the header */
@@ -69,7 +71,7 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    top: 100%; /* Place directly below button */
+    top: 100%;
     left: 0;
     background-color: #fff;
     min-width: 180px;
@@ -93,4 +95,24 @@
 
 /* Show dropdown when .show is added */
 .dropdown-content.show {
-    display:
+    display: block;
+}
+
+/* =========================
+   Main Content
+   ========================= */
+main {
+    margin-top: 150px; /* Push content below fixed header */
+    padding: 20px;
+    min-height: 100vh;
+    text-align: center;
+}
+
+/* =========================
+   Footer
+   ========================= */
+footer {
+    background-color: #e2ddc9; /* Darker beige than header */
+    text-align: center;
+    padding: 20px;
+}
