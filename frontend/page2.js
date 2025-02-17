@@ -1,8 +1,8 @@
 // Fetch the elements
-const repoUrlInput = document.getElementById("repoUrl") as HTMLInputElement;
-const submitButton = document.getElementById("submitLink") as HTMLButtonElement;
-const summaryText = document.getElementById("summaryText") as HTMLElement;
-const summaryResult = document.getElementById("summaryResult") as HTMLElement;
+const repoUrlInput = document.getElementById("repoUrl");
+const submitButton = document.getElementById("submitLink");
+const summaryText = document.getElementById("summaryText");
+const summaryResult = document.getElementById("summaryResult");
 
 // When the submit button is clicked
 submitButton.addEventListener("click", async () => {
@@ -33,7 +33,7 @@ submitButton.addEventListener("click", async () => {
                 <strong>Repository URL:</strong> <a href="${data.repo_url}" target="_blank">${data.repo_url}</a><br>
                 <strong>Repository Name:</strong> ${data.repo_name}<br>
                 <strong>Files:</strong><ul>
-                    ${data.files.map((file: string) => `<li>${file}</li>`).join('')}
+                    ${data.files.map(file => `<li>${file}</li>`).join('')}
                 </ul>
                 <strong>Summary:</strong><br><pre>${data.summary}</pre>
             `;

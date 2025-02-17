@@ -23,16 +23,19 @@
 
   <main>
     <h1>GitHub Repository Summarizer</h1>
-    
-    <div class="summarizer-container">
-      <label for="repoUrl">Paste GitHub Repository URL:</label>
-      <input type="text" id="repoUrl" placeholder="https://github.com/owner/repo_name" />
-      <button id="submitLink">Analyze Repository</button>
+    <p>Paste the GitHub repository URL below to analyze and get a summary of its content.</p>
+
+    <!-- Input Section for Repository URL -->
+    <div class="repo-input-container">
+        <label for="repoUrl">Enter GitHub Repository URL:</label>
+        <input type="text" id="repoUrl" placeholder="https://github.com/owner/repo_name" />
+        <button id="submitLink">Analyze Repository</button>
     </div>
 
+    <!-- Area for Displaying the Summary -->
     <div id="summaryResult" class="hidden">
-      <h3>Summary:</h3>
-      <p id="summaryText">Your summary will appear here after you submit a valid GitHub link.</p>
+        <h3>Repository Summary</h3>
+        <p id="summaryText">The summary will appear here once you submit a valid GitHub link.</p>
     </div>
 
   </main>
@@ -41,7 +44,8 @@
     <p>&copy; 2025 Skill Sync. All rights reserved.</p>
   </footer>
 
-  <script src="dist/script.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/page2.js"></script>  <!-- Add this script for handling page 2 specific behavior -->
+
 </body>
 </html>
-

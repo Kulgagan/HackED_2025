@@ -8,46 +8,47 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-document.addEventListener("DOMContentLoaded", () => {
-    const submitButton = document.getElementById("submitLink");
-    const repoUrlInput = document.getElementById("repoUrl");
-    const summaryResult = document.getElementById("summaryResult");
-    const summaryText = document.getElementById("summaryText");
-    if (!submitButton || !repoUrlInput || !summaryResult || !summaryText) {
-        console.error("Error: Missing elements.");
+// Fetch the elements
+const repoUrlInput = document.getElementById("repoUrl");
+const submitButton = document.getElementById("submitLink");
+const summaryText = document.getElementById("summaryText");
+const summaryResult = document.getElementById("summaryResult");
+// When the submit button is clicked
+submitButton.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
+    const repoUrl = repoUrlInput.value.trim();
+    if (repoUrl === "") {
+        alert("Please enter a valid GitHub repository URL.");
         return;
     }
-    submitButton.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
-        const repoUrl = repoUrlInput.value.trim();
-        if (!repoUrl) {
-            alert("Please enter a GitHub repository URL.");
-            return;
-        }
-        try {
-            const response = yield simulateRepoAnalysis(repoUrl);
-            if (response && response.summary) {
-                summaryText.innerHTML = response.summary;
-                summaryResult.classList.remove("hidden");
-            }
-            else {
-                summaryText.innerHTML = "Could not fetch summary. Please try again.";
-            }
-        }
-        catch (error) {
-            console.error("Error:", error);
-            summaryText.innerHTML = "An error occurred while analyzing the repository.";
-            summaryResult.classList.remove("hidden");
-        }
-    }));
-});
-function simulateRepoAnalysis(repoUrl) {
-    return __awaiter(this, void 0, void 0, function* () {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve({
-                    summary: `Summary for repository: ${repoUrl} (mock). This would be the content returned by your backend summarizer.`
-                });
-            }, 1000);
+    // Send POST request to backend to analyze the repo
+    try {
+        const response = yield fetch("http://localhost:8000/analyze", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ repo_url: repoUrl })
         });
-    });
-}
+        const data = yield response.json();
+        // Check if the response contains repository details
+        if (response.ok) {
+            // Update the summary result
+            summaryResult.classList.remove("hidden");
+            summaryText.innerHTML = `
+                <strong>Repository URL:</strong> <a href="${data.repo_url}" target="_blank">${data.repo_url}</a><br>
+                <strong>Repository Name:</strong> ${data.repo_name}<br>
+                <strong>Files:</strong><ul>
+                    ${data.files.map((file) => `<li>${file}</li>`).join('')}
+                </ul>
+                <strong>Summary:</strong><br><pre>${data.summary}</pre>
+            `;
+        }
+        else {
+            alert(data.detail || "Error analyzing repository.");
+        }
+    }
+    catch (error) {
+        console.error("Error:", error);
+        alert("There was an error fetching the repository data.");
+    }
+}));
