@@ -60,7 +60,7 @@ def generate_quiz():
     global Summary  # Access the global Summary variable
     global generated_quiz
 
-    if not Summary:
+    if not Sample_summary:
         raise HTTPException(status_code=404, detail = "No summary available. Please analyze a repository first.")
 
     response = ollama.chat(
