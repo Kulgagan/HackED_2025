@@ -1,5 +1,13 @@
-from backend.main import summary
+from backend.main import Summary
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from typing import List, Dict
 import ollama 
+
+app = FastAPI
+
+class UserAnswers(BaseModel):
+    answers: List[str]
 
 '''
 Takes the response from ollama and parses through it to seperate it 
@@ -45,6 +53,7 @@ def parse_quiz(response):
 
     return questions, options, correct_answers
 
+@app.get("/generate-quiz/")
 # generates quiz and sends out summary
 def generate_quiz(summary):
     
@@ -53,12 +62,18 @@ def generate_quiz(summary):
     response = ollama.chat(
         engine = 'llama3.1',
         messages = [{"role": "system", "content": "You are a quiz generator "},
-                    {"role": "system", "content": f"Generate a  multiple choice practice quiz based on this code summary:\n\n"
-                                                  f"{summary}"
+                    {"role": "user", "content": f"Generate a  multiple choice practice quiz based on this code summary:\n\n"
+                                                  f"{Summary}"
                                                   f"Provide exactly 5 multiple choice questions with 4 options (A, B, C, D). With the question starting with 'Q: '"
                                                   f"After each question, state the correct answer in this format: \n"
                                                   f"'Answer X: ' where X is A, B, C, or D."}]
     )['messages']['content']
 
     questions, options, correct_answers = parse_quiz(response)
+
+    quiz = []
+    for i in range(len(questions)):
+        quiz.append({"question:": questions[i]})
+
+
 

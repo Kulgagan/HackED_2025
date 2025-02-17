@@ -1,83 +1,68 @@
-/* Import League Spartan font */
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
-
-/* =========================
-   Global & Body
-   ========================= */
-body {
+/* General Reset */
+body, html {
+    font-family: "League Spartan", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f6f1; /* Light beige background */
-    overflow-x: hidden;        /* Prevent horizontal scrolling */
-    font-family: 'League Spartan', sans-serif;
-}
-
-/* =========================
-   Header (Banner)
-   ========================= */
-#banner {
+    background-color: #121212; /* Restores previous color scheme */
+    color: white;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Header */
+  #banner {
+    background-color: #1f1f1f; /* Dark theme */
+    padding: 20px;
+    text-align: center;
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 150px;
-    background-color: #f1efe7;  /* Slightly lighter beige for header */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 50px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: height 0.3s ease;
+    top: 0;
     z-index: 1000;
-}
-
-/* Logo inside header */
-#logo {
-    height: 120px;
-    transition: height 0.3s ease;
-}
-
-/* Navigation buttons below the logo */
-#navigation-buttons {
+  }
+  
+  #logo {
+    max-width: 180px;
+  }
+  
+  /* Navigation Buttons */
+  #nav-buttons {
     display: flex;
-    gap: 20px;  /* Space between buttons */
-    margin-top: 20px;  /* Space from the logo */
-}
-
-/* Style for the navigation buttons */
-.nav-btn {
-    background-color: #fff;  /* White background */
-    color: #000;             /* Black text */
-    font-family: 'League Spartan', sans-serif;
-    font-size: 16px;
-    padding: 12px 18px;
-    border: 1px solid #ccc;  /* Subtle border */
+    justify-content: center;
+    margin-top: 80px; /* Adjust so it stays below the header */
+    gap: 10px;
+  }
+  
+  .nav-button {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    padding: 15px 40px;
+    text-decoration: none;
+    transition: 0.3s;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-/* Hover effect for the buttons */
-.nav-btn:hover {
-    background-color: #ddd;
-}
-
-/* =========================
-   Main Content
-   ========================= */
-main {
-    margin-top: 150px; /* Push content below fixed header */
+  }
+  
+  .nav-button:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  /* Main Content */
+  main {
+    margin-top: 120px; /* Prevent content from being hidden behind fixed header */
     padding: 20px;
-    min-height: 100vh;
+    min-height: 70vh;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #1f1f1f;
+    padding: 10px;
     text-align: center;
-}
-
-/* =========================
-   Footer
-   ========================= */
-footer {
-    background-color: #e2ddc9; /* Darker beige than header */
-    text-align: center;
-    padding: 20px;
-}
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
