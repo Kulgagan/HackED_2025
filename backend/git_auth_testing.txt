@@ -1,0 +1,5 @@
+http://localhost:8000/auth/github - GitHub will prompt you to authorize the app
+http://localhost:8000/auth/callback?code=XXXXXX - redirected to this
+{"access_token":"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"} -given this. server exchanges code for an access token
+curl -H "Authorization: token YOUR_ACCESS_TOKEN" https://api.github.com/user - checking/ testing
+
