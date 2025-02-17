@@ -37,15 +37,5 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-});
+}); // This is the correct closing brace for the DOMContentLoaded event listener
 
-
-    // Shrink header on scroll
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            header.classList.add("shrink");
-        } else {
-            header.classList.remove("shrink");
-        }
-    });
-});
