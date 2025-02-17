@@ -149,7 +149,7 @@ main {
   }
   
   .summarizer-container button {
-    background-color: #3333;
+    background-color: rgba(50,61,68,255);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -160,7 +160,7 @@ main {
   }
   
   .summarizer-container button:hover {
-    background-color: #121212;
+    background-color: rgba(30,42,48,255);
   }
   
   #summaryResult {
@@ -242,7 +242,7 @@ main {
   /* Optional: Style for summary content inside the box */
   #summary-result {
     font-size: 1.2em;
-    color: #3333;
+    color: #000000;
   }
 
   /* Style for the quiz container box with rounded edges */
@@ -259,7 +259,7 @@ main {
   
   /* Optional: Style for buttons inside the box */
   #startQuiz {
-    background-color: #3333; /* Green color */
+    background-color: rgba(50,61,68,255); /* Green color */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -270,7 +270,7 @@ main {
   
   /* Optional: Style for button hover effect */
   #startQuiz:hover {
-    background-color: #121212;
+    background-color: rgba(30,42,48,255);
   }
   
   /* Optional: Style for the quiz content inside the box */
