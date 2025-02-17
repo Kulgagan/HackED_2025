@@ -1,32 +1,44 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", () => {
-    // Get essential elements
-    const header = document.getElementById("banner");
-    const dropdownBtn = document.getElementById("dropdown-btn");
-    const dropdownContent = document.getElementById("dropdown-content");
-    if (!header || !dropdownBtn || !dropdownContent) {
-        console.error("Missing essential elements in the DOM.");
-        return;
+    // Banner Shrinking Effect
+    const banner = document.getElementById("banner");
+    if (banner) {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                banner.classList.add("shrink");
+            }
+            else {
+                banner.classList.remove("shrink");
+            }
+        });
     }
-    // Toggle the dropdown menu on button click
-    dropdownBtn.addEventListener("click", (event) => {
-        event.stopPropagation(); // Prevent the click from bubbling up
-        dropdownContent.classList.toggle("show");
-    });
-    // Close the dropdown when clicking outside of it
-    document.addEventListener("click", (event) => {
-        if (!dropdownBtn.contains(event.target) &&
-            !dropdownContent.contains(event.target)) {
-            dropdownContent.classList.remove("show");
+    // Dropdown Menu - Open and Close
+    const dropdownButton = document.getElementById("dropdown-btn");
+    const dropdownContent = document.getElementById("dropdown-content");
+    if (dropdownButton && dropdownContent) {
+        // Toggle dropdown visibility when the button is clicked
+        dropdownButton.addEventListener("click", (event) => {
+            event.stopPropagation(); // Prevent triggering the document click handler
+            dropdownContent.classList.toggle("show");
+        });
+        // Close dropdown if clicking outside of the dropdown
+        document.addEventListener("click", (event) => {
+            if (!dropdownButton.contains(event.target) && !dropdownContent.contains(event.target)) {
+                dropdownContent.classList.remove("show");
+            }
+        });
+    }
+    // Ensure the dropdown menu shows when hovering over the button
+    const dropdown = document.querySelector(".dropdown");
+    if (dropdown) {
+        const dropdownContent = dropdown.querySelector(".dropdown-content");
+        if (dropdownContent) {
+            dropdown.addEventListener("mouseenter", () => {
+                dropdownContent.style.display = "block";
+            });
+            dropdown.addEventListener("mouseleave", () => {
+                dropdownContent.style.display = "none";
+            });
         }
-    });
-    // Shrink header on scroll
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            header.classList.add("shrink");
-        }
-        else {
-            header.classList.remove("shrink");
-        }
-    });
+    }
 });

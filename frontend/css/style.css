@@ -23,8 +23,9 @@ body {
     height: 150px;
     background-color: #f1efe7;  /* Slightly lighter beige for header */
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: height 0.3s ease;
@@ -37,66 +38,29 @@ body {
     transition: height 0.3s ease;
 }
 
-/* Shrink the header on scroll */
-.shrink {
-    height: 80px !important;
+/* Navigation buttons below the logo */
+#navigation-buttons {
+    display: flex;
+    gap: 20px;  /* Space between buttons */
+    margin-top: 20px;  /* Space from the logo */
 }
 
-.shrink #logo {
-    height: 60px;
-}
-
-/* =========================
-   Dropdown Container & Button
-   ========================= */
-/* Position the dropdown container on the right side of the header */
-.dropdown {
-    position: absolute;
-    top: 520px;    /* 52px from the top of the header */
-    right: 500px;  /* 50px from the right side */
-    z-index: 2000;
-}
-
-/* Style the Explore button */
-.dropbtn {
+/* Style for the navigation buttons */
+.nav-btn {
     background-color: #fff;  /* White background */
     color: #000;             /* Black text */
-    padding: 12px 18px;
+    font-family: 'League Spartan', sans-serif;
     font-size: 16px;
+    padding: 12px 18px;
     border: 1px solid #ccc;  /* Subtle border */
     cursor: pointer;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-/* =========================
-   Dropdown Content
-   ========================= */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%; /* Just below the button */
-    left: 0;
-    background-color: #fff;
-    min-width: 180px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    border-radius: 5px;
-}
-
-.dropdown-content a {
-    display: block;
-    color: #000;
-    padding: 12px;
-    text-decoration: none;
-    text-align: left;
-}
-
-.dropdown-content a:hover {
+/* Hover effect for the buttons */
+.nav-btn:hover {
     background-color: #ddd;
-}
-
-/* Show dropdown when .show is added */
-.dropdown-content.show {
-    display: block;
 }
 
 /* =========================
