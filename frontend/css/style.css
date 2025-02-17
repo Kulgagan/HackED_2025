@@ -24,7 +24,7 @@ body, html {
   #logo {
     max-width: 180px;
   }
-  
+
   .content-container {
     display: flex;
     justify-content: space-between;
@@ -92,7 +92,20 @@ body, html {
     padding: 10px; /* Reduce padding to make the header smaller */
     transition: padding 0.3s ease-in-out;
 }
+/* Shrunk state for header */
+.shrink {
+    height: 60px; /* Reduced header height */
+}
 
+/* Shrunk state for the logo inside the header */
+.shrink-logo {
+    max-width: 120px; /* Reduced logo size */
+}
+
+/* Shrunk state for navigation buttons */
+.shrink-nav {
+    padding: 10px 0; /* Reduced padding for navigation buttons */
+}
   
   /* Footer */
   footer {
