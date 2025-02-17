@@ -3,11 +3,19 @@ from backend.github_analyzer import fetch_repo_name, list_repo_files, read_file_
 from backend.summarizer import Summarizer
 from pydantic import BaseModel
 from backend.git_authentication import router as auth_router
-
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-app.include_router(auth_router) #authentication
+app.include_router(auth_router)  # Authentication
+
+# Enable CORS so the frontend can communicate with FastAPI
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this if needed for security
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")  # Home page
 def read_root():
@@ -40,6 +48,7 @@ def analyze_repo(request: RepoUrlRequest):
         "language": repo_data["language"],
         "code_files": code_files
     }
+    
     global Summary
     Summary = {
         "summaries": summaries  # Include summaries in the response

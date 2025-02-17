@@ -75,42 +75,4 @@ def generate_quiz():
     if not quiz:
         raise HTTPException(status_code = 500, detail = "Failed to generate quiz from response")
 
-<<<<<<< HEAD
-    return {"quiz": quiz, "total_questions": len(questions)}
-
-@app.post("/submit-answers/")
-def submit_answers(user_answers: UserAnswers):
-    global Summary  # Access the global Summary variable
-
-    if not Summary:
-        raise HTTPException(status_code=404, detail="No summary available. Please analyze a repository first.")
-
-    response = ollama.chat(
-        model='llama3.1',
-        messages = [{"role": "system", "content": "You are a quiz generator "},
-                    {"role": "user", "content": f"Generate a  multiple choice practice quiz based on this code summary:\n\n"
-                                                  f"{Summary}"
-                                                  f"Provide exactly 5 multiple choice questions with 4 options (A, B, C, D). With the question starting with 'Q: '"
-                                                  f"After each question, state the correct answer in this format: \n"
-                                                  f"'Answer X: ' where X is A, B, C, or D."}]
-    )['message']['content']
-
-    _, _, correct_answers = parse_quiz(response)
-
-    user_answers_list = user_answers.answers
-    score = 0
-
-    if len(user_answers.answers) != len(correct_answers):
-        raise HTTPException(status_code=400, detail="Not enough answers")
-    
-    for i in range(len(correct_answers)):
-        user_answer = user_answers_list[i].upper()
-        correct_answer = correct_answers[i]
-
-        if user_answer == correct_answer:
-            score += 1
-
-    return {"score": score, "total": len(correct_answers), "correct_answers": correct_answers, "user_answers": user_answers.answers}
-=======
     return {"quiz": quiz, "total_questions": len(quiz)}
->>>>>>> 2e7f7b26d86f5267abab06e12e05a0d11dbace6a
