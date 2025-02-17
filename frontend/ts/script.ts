@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", () => {
         const scrollPosition = window.scrollY;
 
-        if (scrollPosition > 100) {
+        if (scrollPosition > 10) {
             // Shrink header and logo, and adjust the nav buttons' height
             banner.style.height = "60px"; // Adjust header height when scrolled down
             logo.style.maxWidth = "120px"; // Shrink logo
