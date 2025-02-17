@@ -35,6 +35,7 @@ submitButton.addEventListener("click", async () => {
                 <strong>Files:</strong><ul>
                     ${data.files.map((file: string) => `<li>${file}</li>`).join('')}
                 </ul>
+                <strong>Summary:</strong><br><pre>${data.summary}</pre>
             `;
         } else {
             alert(data.detail || "Error analyzing repository.");
@@ -44,6 +45,3 @@ submitButton.addEventListener("click", async () => {
         alert("There was an error fetching the repository data.");
     }
 });
-
-  
-  
