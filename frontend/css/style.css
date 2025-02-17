@@ -284,31 +284,36 @@ main {
     color: #666;
   }
   
-/* White box with rounded edges below the sections */
-.info-box {
-    background-color: white;
-    padding: 20px;
-    border-radius: 12px; /* Rounded corners */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
-    margin-top: 30px; /* Add some spacing between the sections and the box */
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center; /* Center-align content */
+/* White Box Styling */
+#info-box {
+    background-color: rgba(255, 255, 255, 255); /* White background */
+    padding: 30px;
+    border-radius: 15px; /* Rounded edges */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 800px; /* Limit width */
+    margin: 40px auto; /* Center the box */
+    text-align: left; /* Keep text aligned properly */
   }
   
-  /* Authentication Button Container */
-  .auth-container {
-    background-color: rgba(50, 61, 68, 1); /* Background color for button container */
-    padding: 10px;
-    display: inline-block;
-    border-radius: 8px; /* Rounded corners for button container */
-    margin-top: 20px;
+  /* Wrapper to ensure sections are inside the white box */
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Styling for sections inside the white box */
+  #about, #commitment {
+    margin-bottom: 20px;
+  }
+  
+  /* Section Headings */
+  h2 {
+    color: #333; /* Darker text for better visibility */
   }
   
   /* Authentication Button Styles */
   #authButton {
-    background-color: #rgba(50,61,68,255); /* Green color */
+    background-color: rgba(50,61,68,255); /* Green color */
     color: white;
     border: none;
     padding: 10px 20px;
