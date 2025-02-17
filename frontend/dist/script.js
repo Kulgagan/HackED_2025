@@ -9,14 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 document.addEventListener("DOMContentLoaded", () => {
-    // Get elements with proper TypeScript type assertions
+    // Get elements with proper TS assertions
     const submitButton = document.getElementById("submitLink");
     const linkInput = document.getElementById("linkInput");
     const summaryResult = document.getElementById("summary-result");
+    const gitAuthButton = document.getElementById("git-auth-button");
     if (!submitButton || !linkInput || !summaryResult) {
         console.error("❌ Missing required elements in HTML.");
         return;
     }
+    // 👉 Simple direct-redirect approach for GitHub auth
+    gitAuthButton === null || gitAuthButton === void 0 ? void 0 : gitAuthButton.addEventListener("click", () => {
+        // If your FastAPI runs on localhost:8000, just point to the endpoint:
+        window.location.href = "http://127.0.0.1:8000/auth/github";
+    });
+    // Example of how you're handling the "Analyze" button
     submitButton.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
         const repoUrl = linkInput.value.trim();
         if (!repoUrl) {
@@ -24,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         try {
-            // Send request to FastAPI backend
             const response = yield fetch("http://127.0.0.1:8000/analyze", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
