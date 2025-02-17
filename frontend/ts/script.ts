@@ -9,6 +9,19 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    document.getElementById("git-auth-button")?.addEventListener("click", async () => {
+        try {
+            const response = await fetch("/auth/github", { method: "GET" });
+            if (!response.ok) {
+                throw new Error("Failed to initiate authentication");
+            }
+            window.location.href = response.url;
+        } catch (error) {
+            console.error("Error authenticating with GitHub:", error);
+            alert("GitHub authentication failed. Please try again.");
+        }
+    });
+    
     submitButton.addEventListener("click", async () => {
         const repoUrl: string = linkInput.value.trim();
         if (!repoUrl) {
