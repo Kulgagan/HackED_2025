@@ -1,29 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Get essential elements
-    const header = document.getElementById("banner") as HTMLElement;
-    const dropdownBtn = document.getElementById("dropdown-btn") as HTMLElement;
-    const dropdownContent = document.getElementById("dropdown-content") as HTMLElement;
-
-    if (!header || !dropdownBtn || !dropdownContent) {
-        console.error("Missing essential elements in the DOM.");
-        return;
+    // Banner Shrinking Effect
+    const banner = document.getElementById("banner");
+    if (banner) {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                banner.classList.add("shrink");
+            } else {
+                banner.classList.remove("shrink");
+            }
+        });
     }
 
-    // Toggle the dropdown menu on button click
-    dropdownBtn.addEventListener("click", (event: MouseEvent) => {
-        event.stopPropagation(); // Prevent the click from bubbling up
-        dropdownContent.classList.toggle("show");
-    });
-
-    // Close the dropdown when clicking outside of it
-    document.addEventListener("click", (event: MouseEvent) => {
-        if (
-            !dropdownBtn.contains(event.target as Node) &&
-            !dropdownContent.contains(event.target as Node)
-        ) {
-            dropdownContent.classList.remove("show");
+    // Dropdown Menu - Close if clicking outside
+    window.onclick = function(event: MouseEvent) {
+        if (!(event.target as HTMLElement).matches(".dropbtn")) {
+            document.querySelectorAll(".dropdown-content").forEach(dropdown => {
+                (dropdown as HTMLElement).style.display = "none";
+            });
         }
-    });
+    };
+
+    // Ensure dropdown remains functional using mouseenter and mouseleave
+    const dropdown = document.querySelector(".dropdown");
+    if (dropdown) {
+        dropdown.addEventListener("mouseenter", function() {
+            const dropdownContent = this.querySelector(".dropdown-content") as HTMLElement;
+            if (dropdownContent) {
+                dropdownContent.style.display = "block";
+            }
+        });
+
+        dropdown.addEventListener("mouseleave", function() {
+            const dropdownContent = this.querySelector(".dropdown-content") as HTMLElement;
+            if (dropdownContent) {
+                dropdownContent.style.display = "none";
+            }
+        });
+    }
+});
+
 
     // Shrink header on scroll
     window.addEventListener("scroll", () => {
