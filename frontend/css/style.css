@@ -176,7 +176,60 @@ main {
   .hidden {
     display: none;
   }
-  
+
+  /* Styling for the GitHub URL input area */
+.repo-input-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+.repo-input-container input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.repo-input-container button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.repo-input-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Summary Result Styling */
+#summaryResult {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+#summaryResult.hidden {
+    display: none;
+}
+
+#summaryText {
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
 /* Footer */
 footer {
     background-color: rgba(250,235,215,1.00); /* Slightly darker than header */

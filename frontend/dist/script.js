@@ -40,6 +40,7 @@ submitButton.addEventListener("click", () => __awaiter(void 0, void 0, void 0, f
                 <strong>Files:</strong><ul>
                     ${data.files.map((file) => `<li>${file}</li>`).join('')}
                 </ul>
+                <strong>Summary:</strong><br><pre>${data.summary}</pre>
             `;
         }
         else {
