@@ -1,57 +1,53 @@
-from fastapi import FastAPI
-from backend.github_analyzer import fetch_repo_name, list_repo_files, read_file_contents
-from backend.summarizer import Summarizer
+from fastapi import FastAPI, HTTPException
+import requests
+import base64
 from pydantic import BaseModel
-from backend.git_authentication import router as auth_router
-from fastapi.middleware.cors import CORSMiddleware
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 
 app = FastAPI()
-app.include_router(auth_router)  # Authentication
 
-# Enable CORS so the frontend can communicate with FastAPI
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Adjust this if needed for security
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-@app.get("/")  # Home page
-def read_root():
-    return {"message": "Welcome to the AI Onboarding API!"}
-
-class RepoUrlRequest(BaseModel):
+# Pydantic model to define the structure of the request
+class RepoRequest(BaseModel):
     repo_url: str
 
 @app.post("/analyze")
-def analyze_repo(request: RepoUrlRequest): 
-    repo_url = request.repo_url
-    repo_data = fetch_repo_name(repo_url)
-    repo_name = repo_data["full_name"] 
-    code_files = list_repo_files(repo_name)
+def fetch_repo_name(repo_request: RepoRequest):
+    repo_url = repo_request.repo_url.strip()
+    repo_name = repo_url.split("github.com/")[-1]  # Get the repo name from the URL
 
-    summarizer = Summarizer()
-    summaries = {}
+    if not repo_name:
+        raise HTTPException(status_code=400, detail="Invalid GitHub Repo URL")
 
-    for file_path in code_files: 
-        content = read_file_contents(repo_name, file_path)
-        if content: 
-            summary = summarizer.summarize(content) 
-            summaries[file_path] = summary
-    
-    user_info = {
-        "repo_name": repo_data["name"],
-        "owner": repo_data["owner"]["login"],
-        "description": repo_data.get("description", "No description"),
-        "stars": repo_data["stargazers_count"],
-        "language": repo_data["language"],
-        "code_files": code_files
-    }
-    
-    global Summary
-    Summary = {
-        "summaries": summaries  # Include summaries in the response
+    api_url = f"https://api.github.com/repos/{repo_name}"
+    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
+    response = requests.get(api_url, headers=headers)
+
+    if response.status_code != 200:
+        raise HTTPException(status_code=404, detail="Repo not found")
+
+    repo_data = response.json()
+
+    # Get repository files (Python and JavaScript files)
+    files = list_repo_files(repo_name)
+
+    return {
+        "repo_url": repo_url,
+        "repo_name": repo_data.get("name"),
+        "files": files
     }
 
-    return Summary
+def list_repo_files(repo_name: str):
+    """Lists Python and JavaScript files from GitHub repo."""
+    api_url = f"https://api.github.com/repos/{repo_name}/contents/"
+    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
+    response = requests.get(api_url, headers=headers)
+
+    if response.status_code != 200:
+        raise HTTPException(status_code=404, detail="Could not fetch repo contents")
+
+    files = response.json()
+    return [file["path"] for file in files if file["path"].endswith((".py", ".js"))]
