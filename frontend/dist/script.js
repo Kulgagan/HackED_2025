@@ -1,8 +1,29 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", () => {
-    // Banner and related elements
-    const banner = document.getElementById("banner");
-    const navButtons = document.getElementById("nav-buttons");
-    const logo = document.getElementById("logo");
-    // You can add any further actions here if necessary, such as event listeners
+    const linkInput = document.getElementById("linkInput");
+    const submitButton = document.getElementById("submitLink");
+    const storedLinksList = document.getElementById("storedLinks");
+    // Retrieve stored links from localStorage (if any)
+    function loadStoredLinks() {
+        const links = JSON.parse(localStorage.getItem("submittedLinks") || "[]");
+        storedLinksList.innerHTML = ""; // Clear previous list
+        links.forEach((link) => {
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="${link}" target="_blank">${link}</a>`;
+            storedLinksList.appendChild(li);
+        });
+    }
+    // Save link when the button is clicked
+    submitButton.addEventListener("click", () => {
+        const link = linkInput.value.trim();
+        if (link) {
+            let links = JSON.parse(localStorage.getItem("submittedLinks") || "[]");
+            links.push(link);
+            localStorage.setItem("submittedLinks", JSON.stringify(links));
+            linkInput.value = ""; // Clear input field
+            loadStoredLinks(); // Update displayed list
+        }
+    });
+    // Load stored links when the page loads
+    loadStoredLinks();
 });

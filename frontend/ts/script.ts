@@ -1,32 +1,64 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const linkInput = document.getElementById("linkInput") as HTMLInputElement;
-    const submitButton = document.getElementById("submitLink") as HTMLButtonElement;
-    const storedLinksList = document.getElementById("storedLinks") as HTMLUListElement;
+    const startQuizBtn = document.getElementById("startQuiz");
+    const quizContainer = document.getElementById("quizContainer");
+    const questionContainer = document.getElementById("questionContainer");
+    const quizForm = document.getElementById("quizForm");
+    const quizResults = document.getElementById("quizResults");
+    const scoreOutput = document.getElementById("scoreOutput");
 
-    // Retrieve stored links from localStorage (if any)
-    function loadStoredLinks() {
-        const links = JSON.parse(localStorage.getItem("submittedLinks") || "[]");
-        storedLinksList.innerHTML = ""; // Clear previous list
-        links.forEach((link: string) => {
-            const li = document.createElement("li");
-            li.innerHTML = `<a href="${link}" target="_blank">${link}</a>`;
-            storedLinksList.appendChild(li);
-        });
-    }
+    let quizData = {}; // Stores quiz questions and answers
 
-    // Save link when the button is clicked
-    submitButton.addEventListener("click", () => {
-        const link = linkInput.value.trim();
-        if (link) {
-            let links = JSON.parse(localStorage.getItem("submittedLinks") || "[]");
-            links.push(link);
-            localStorage.setItem("submittedLinks", JSON.stringify(links));
-            linkInput.value = ""; // Clear input field
-            loadStoredLinks(); // Update displayed list
+    startQuizBtn.addEventListener("click", async () => {
+        try {
+            const response = await fetch("http://127.0.0.1:8000/generate-quiz/");
+            const data = await response.json();
+
+            quizData = data.quiz; // Store quiz data
+            displayQuiz(quizData);
+        } catch (error) {
+            console.error("Error fetching quiz:", error);
         }
     });
 
-    // Load stored links when the page loads
-    loadStoredLinks();
-});
+    function displayQuiz(quiz) {
+        questionContainer.innerHTML = ""; 
+        quizContainer.classList.remove("hidden");
 
+        quiz.forEach((q, index) => {
+            const questionDiv = document.createElement("div");
+            questionDiv.classList.add("question-block");
+
+            questionDiv.innerHTML = `
+                <p><strong>${q.questions}</strong></p>
+                ${q.options.map(option => `
+                    <label>
+                        <input type="radio" name="question${index}" value="${option}">
+                        ${option}
+                    </label><br>
+                `).join("")}
+            `;
+
+            questionContainer.appendChild(questionDiv);
+        });
+    }
+
+    quizForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let score = 0;
+
+        quizData.forEach((q, index) => {
+            const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+            if (selectedOption) {
+                const userAnswer = selectedOption.value;
+
+                if (userAnswer.startsWith(q.answer)) {
+                    score++;
+                }
+            }
+        });
+
+        // Show results
+        quizResults.classList.remove("hidden");
+        scoreOutput.innerText = `You scored ${score} out of ${quizData.length}!`;
+    });
+});
