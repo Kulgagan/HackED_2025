@@ -3,7 +3,7 @@ body, html {
     font-family: "League Spartan", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f1e9; /* Restoring beige color */
+    background-color: rgba(245, 243, 235, 255); /* Lighter than the header */
     color: black;
     height: 100%;
     overflow-x: hidden;
@@ -11,13 +11,14 @@ body, html {
   
   /* Header */
   #banner {
-    background-color: #dfc8a2; /* Beige-toned banner */
+    background-color: rgba(241, 239, 231, 255); /* Header Color */
     padding: 20px;
     text-align: center;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    border-bottom: 2px solid rgba(220, 218, 210, 255); /* Subtle separation */
   }
   
   #logo {
@@ -30,11 +31,11 @@ body, html {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    padding: 10px 0;
-    background-color: #dfc8a2; /* Matches banner */
+    padding: 15px 0;
+    background-color: rgba(241, 239, 231, 255); /* Same as header */
     position: fixed;
     width: 100%;
-    top: 80px; /* Below header */
+    top: 80px; /* Ensures buttons aren't cut off */
     z-index: 999;
   }
   
@@ -44,7 +45,7 @@ body, html {
     color: black;
     background-color: white;
     border: 2px solid black;
-    padding: 15px 40px;
+    padding: 20px 50px;
     text-decoration: none;
     transition: 0.3s;
     cursor: pointer;
@@ -57,18 +58,19 @@ body, html {
   
   /* Main Content */
   main {
-    margin-top: 140px; /* Adjusted to account for fixed header + buttons */
+    margin-top: 160px; /* Adjusted to avoid buttons being cut off */
     padding: 20px;
     min-height: 70vh;
   }
   
   /* Footer */
   footer {
-    background-color: #dfc8a2;
+    background-color: rgba(225, 223, 215, 255); /* Slightly darker than header */
     padding: 10px;
     text-align: center;
     position: relative;
     bottom: 0;
     width: 100%;
+    border-top: 2px solid rgba(200, 198, 190, 255); /* Subtle separation */
   }
   
