@@ -64,7 +64,7 @@ def generate_quiz():
         raise HTTPException(status_code=404, detail = "No summary available. Please analyze a repository first.")
 
     response = ollama.chat(
-        model='llama3.3',
+        model='llama3.1',
         messages = [{"role": "system", "content": "You are a quiz generator "},
                     {"role": "user", "content": f"Generate a  multiple choice practice quiz based on this code summary:\n\n"
                                                   f"{Sample_summary}"
