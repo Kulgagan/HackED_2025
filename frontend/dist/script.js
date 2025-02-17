@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }));
 });
-// Simulated API call for mock functionality
 function simulateRepoAnalysis(repoUrl) {
     return __awaiter(this, void 0, void 0, function* () {
         return new Promise((resolve) => {
