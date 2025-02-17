@@ -24,6 +24,30 @@
   <main>
     <h1>Practice Quizzes</h1>
     <p>Test your knowledge with interactive quizzes.</p>
+
+    <section id="quiz-section">
+        <h2>Practice Quiz</h2>
+        <p>Click below to start the quiz.</p>
+      
+        <button id="startQuiz">Start Quiz</button>
+      
+        <!-- Quiz Display Area -->
+        <div id="quizContainer" class="hidden">
+          <form id="quizForm">
+            <div id="questionContainer"></div>
+            <button type="submit">Submit Quiz</button>
+          </form>
+        </div>
+      
+        <!-- Results Display -->
+        <div id="quizResults" class="hidden">
+          <h3>Your Score:</h3>
+          <p id="scoreOutput"></p>
+        </div>
+      </section>
+      
+      <script src="js/quiz.js"></script>
+      
   </main>
 
   <footer>

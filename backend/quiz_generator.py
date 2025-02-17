@@ -19,7 +19,7 @@ def parse_quiz(response):
     current_options = []
 
     for line in lines:
-        line = lines.strip()
+        line = line.strip()
 
         if line.startswith('Q'):
             if current_question:
