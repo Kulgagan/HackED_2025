@@ -19,23 +19,14 @@ body, html {
     left: 0;
     z-index: 1000;
     border-bottom: 2px solid rgba(220, 218, 210, 255); /* Subtle separation */
-    transition: height 0.3s ease; /* Smooth transition for shrinking */
-}
-
-/* Shrunk Header */
-#banner.shrink {
-    height: 60px; /* Reduced height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Logo inside the header */
 #logo {
-    max-width: 180px;
-    transition: max-width 0.3s ease; /* Smooth transition for shrinking */
-}
-
-/* Shrunk Logo */
-#logo.shrink-logo {
-    max-width: 120px; /* Reduced logo size */
+    max-width: 180px; /* Logo size */
 }
 
 /* Navigation Buttons */
@@ -44,37 +35,28 @@ body, html {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    padding: 15px 0;
+    padding: 10px 0; /* Adjusted for smaller buttons */
     background-color: rgba(241, 239, 231, 255); /* Same as header */
     position: fixed;
     width: 100%;
     top: 105px; /* Ensures buttons aren't cut off */
     z-index: 999;
-    transition: padding 0.3s ease; /* Smooth transition for shrinking */
 }
 
-/* Shrunk Navigation Buttons */
-#nav-buttons.shrink-nav {
-    padding: 10px 0; /* Reduced padding for nav buttons */
-}
-
+/* Smaller buttons */
 .nav-button {
-    font-size: 18px;
+    font-size: 14px; /* Smaller font size */
     font-weight: bold;
     color: black;
     background-color: white;
     border: 2px solid black;
-    padding: 20px 50px;
+    padding: 10px 30px; /* Smaller padding */
     text-decoration: none;
     transition: 0.3s;
     cursor: pointer;
 }
 
-/* Shrink nav button text size when the header shrinks */
-#nav-buttons.shrink-nav .nav-button {
-    font-size: 14px; /* Smaller font size for buttons */
-}
-
+/* Hover effect for buttons */
 .nav-button:hover {
     background-color: black;
     color: white;
