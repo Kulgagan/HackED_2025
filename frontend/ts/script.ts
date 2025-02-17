@@ -4,4 +4,5 @@ document.addEventListener("DOMContentLoaded", () => {
     const navButtons = document.getElementById("nav-buttons") as HTMLElement;
     const logo = document.getElementById("logo") as HTMLElement;
 
-}
+    // You can add any further actions here if necessary, such as event listeners
+});
