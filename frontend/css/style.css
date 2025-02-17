@@ -297,14 +297,6 @@ main {
     text-align: center; /* Center-align content */
   }
   
-  /* Authentication Button Container */
-  .auth-container {
-    background-color: rgba(50, 61, 68, 1); /* Background color for button container */
-    padding: 10px;
-    display: inline-block;
-    border-radius: 8px; /* Rounded corners for button container */
-    margin-top: 20px;
-  }
   
   /* Authentication Button Styles */
   #authButton {
