@@ -35,7 +35,7 @@ body, html {
     background-color: rgba(241, 239, 231, 255); /* Same as header */
     position: fixed;
     width: 100%;
-    top: 80px; /* Ensures buttons aren't cut off */
+    top: 85px; /* Ensures buttons aren't cut off */
     z-index: 999;
   }
   
