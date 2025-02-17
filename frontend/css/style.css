@@ -1,6 +1,8 @@
 /* General Reset */
 body, html {
     font-family: "League Spartan", sans-serif;
+    font-size: 20px;
+    text-align: center;
     margin: 0;
     padding: 0;
     background-color: rgba(255, 250, 240, 1); /* Lighter than the header */
@@ -67,6 +69,50 @@ main {
     margin-top: 160px; /* Adjusted to avoid buttons being cut off */
     padding: 20px;
     min-height: 70vh;
+}
+#link-submission {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 500px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#linkInput {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#submitLink {
+    padding: 10px 20px;
+    border: none;
+    background: #323D44;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#submitLink:hover {
+    background: #1e2a30;
+}
+
+#storedLinks li {
+    list-style: none;
+    margin: 5px 0;
+}
+
+#storedLinks a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+#storedLinks a:hover {
+    text-decoration: underline;
 }
 
 /* Footer */

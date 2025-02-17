@@ -18,9 +18,8 @@ def parse_quiz(response):
     current_question = ''
     current_options = []
 
-    i = 0 
-    while i < len(lines):
-        line = lines[i].strip()
+    for line in lines:
+        line = lines.strip()
 
         if line.startswith('Q'):
             if current_question:
@@ -36,14 +35,22 @@ def parse_quiz(response):
         elif line.lower().startswith("answer: "):
             correct_answer = line.split(':')[1].strip().upper()
             correct_answers.append(correct_answer)
-        
-        i += 1
     
     if current_question:
         questions.append(current_question)
         options.append(current_options)
+    
+    quiz = []
+    for i in range(len(questions)):
 
-    return questions, options, correct_answers
+        quiz.append({
+            "questions": questions[i],
+            "options": options[i] if i < len(options) else [],
+            "answer": correct_answers[i] if i < len(correct_answers) else None
+        }
+        )
+
+    return quiz
 
 @app.get("/generate-quiz/")
 def generate_quiz():
@@ -59,15 +66,16 @@ def generate_quiz():
                                                   f"{Summary}"
                                                   f"Provide exactly 5 multiple choice questions with 4 options (A, B, C, D). With the question starting with 'Q: '"
                                                   f"After each question, state the correct answer in this format: \n"
-                                                  f"'Answer X: ' where X is A, B, C, or D."}]
+                                                  f"'Answer X: ' where X is A, B, C, or D."
+                                                  f"Make sure the answer isn't the same letter each time."}]
     )['message']['content']
 
-    questions, options, correct_answers = parse_quiz(response)
+    quiz = parse_quiz(response)
 
-    quiz = []
-    for i in range(len(questions)):
-        quiz.append({"question": questions[i], "options": options[i]})
+    if not quiz:
+        raise HTTPException(status_code = 500, detail = "Failed to generate quiz from response")
 
+<<<<<<< HEAD
     return {"quiz": quiz, "total_questions": len(questions)}
 
 @app.post("/submit-answers/")
@@ -103,3 +111,6 @@ def submit_answers(user_answers: UserAnswers):
             score += 1
 
     return {"score": score, "total": len(correct_answers), "correct_answers": correct_answers, "user_answers": user_answers.answers}
+=======
+    return {"quiz": quiz, "total_questions": len(quiz)}
+>>>>>>> 2e7f7b26d86f5267abab06e12e05a0d11dbace6a

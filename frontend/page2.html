@@ -22,8 +22,21 @@
   </nav>
 
   <main>
-    <h1>Practice Coding</h1>
-    <p>Improve your coding skills with interactive coding exercises.</p>
+    <h1>Summarizer</h1>
+    <p>Summarizing code and make it easier to interpret.</p>
+
+    <section id="link-submission">
+        <h2>Submit a Link</h2>
+        <p>Enter a link below to be processed:</p>
+        <input type="url" id="linkInput" placeholder="Enter your link here" required>
+        <button id="submitLink">Submit</button>
+        <div id="linkList">
+          <h3>Submitted Links</h3>
+          <ul id="storedLinks"></ul>
+        </div>
+      </section>
+      
+      <script src="js/script.js"></script>
   </main>
 
   <footer>
