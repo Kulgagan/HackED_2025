@@ -25,6 +25,31 @@ body, html {
     max-width: 180px;
   }
   
+  .content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px; /* Adjust as necessary */
+  }
+  
+  /* Style the text content */
+  .text-content {
+    flex: 1;
+    padding-right: 20px; /* Space between text and image */
+  }
+  
+  /* Style the image content */
+  .image-content {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Optional for rounded corners */
+  }
+  
   /* Navigation Buttons */
   #nav-buttons {
     display: flex;
