@@ -276,12 +276,12 @@ main {
   /* Optional: Style for the quiz content inside the box */
   #quiz-section h2 {
     font-size: 1.5em;
-    color: #3333;
+    color: #333;
   }
   
   #quiz-section p {
     font-size: 1.2em;
-    color: #3333;
+    color: #666;
   }
   
 
