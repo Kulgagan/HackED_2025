@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Toggle the dropdown menu on button click
     dropdownBtn.addEventListener("click", (event: MouseEvent) => {
-        event.stopPropagation(); // Prevent the click from closing the dropdown immediately
+        event.stopPropagation(); // Prevent the click from bubbling up
         dropdownContent.classList.toggle("show");
     });
 
@@ -34,4 +34,3 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-

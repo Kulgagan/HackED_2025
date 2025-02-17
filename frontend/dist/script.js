@@ -10,17 +10,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     // Toggle the dropdown menu on button click
     dropdownBtn.addEventListener("click", (event) => {
-        event.stopPropagation(); // Prevents the document click from immediately closing the dropdown
+        event.stopPropagation(); // Prevent the click from closing the dropdown immediately
         dropdownContent.classList.toggle("show");
     });
-    // Close the dropdown menu when clicking outside of it
+    // Close the dropdown when clicking outside of it
     document.addEventListener("click", (event) => {
         if (!dropdownBtn.contains(event.target) &&
             !dropdownContent.contains(event.target)) {
             dropdownContent.classList.remove("show");
         }
     });
-    // Handle header shrinking on scroll
+    // Shrink header on scroll
     window.addEventListener("scroll", () => {
         if (window.scrollY > 50) {
             header.classList.add("shrink");
