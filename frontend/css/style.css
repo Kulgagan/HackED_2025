@@ -259,7 +259,7 @@ main {
   
   /* Optional: Style for buttons inside the box */
   #startQuiz {
-    background-color: #121212; /* Green color */
+    background-color: #3333; /* Green color */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -270,7 +270,7 @@ main {
   
   /* Optional: Style for button hover effect */
   #startQuiz:hover {
-    background-color: rgba(255, 250, 240, 1);
+    background-color: #121212;
   }
   
   /* Optional: Style for the quiz content inside the box */
