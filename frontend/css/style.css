@@ -3,15 +3,15 @@ body, html {
     font-family: "League Spartan", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #121212; /* Restores previous color scheme */
-    color: white;
+    background-color: #f5f1e9; /* Restoring beige color */
+    color: black;
     height: 100%;
     overflow-x: hidden;
   }
   
   /* Header */
   #banner {
-    background-color: #1f1f1f; /* Dark theme */
+    background-color: #dfc8a2; /* Beige-toned banner */
     padding: 20px;
     text-align: center;
     position: fixed;
@@ -28,8 +28,14 @@ body, html {
   #nav-buttons {
     display: flex;
     justify-content: center;
-    margin-top: 80px; /* Adjust so it stays below the header */
-    gap: 10px;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+    background-color: #dfc8a2; /* Matches banner */
+    position: fixed;
+    width: 100%;
+    top: 80px; /* Below header */
+    z-index: 999;
   }
   
   .nav-button {
@@ -51,14 +57,14 @@ body, html {
   
   /* Main Content */
   main {
-    margin-top: 120px; /* Prevent content from being hidden behind fixed header */
+    margin-top: 140px; /* Adjusted to account for fixed header + buttons */
     padding: 20px;
     min-height: 70vh;
   }
   
   /* Footer */
   footer {
-    background-color: #1f1f1f;
+    background-color: #dfc8a2;
     padding: 10px;
     text-align: center;
     position: relative;
