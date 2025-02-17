@@ -4,23 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Repository Summarizer</title>
+    <link rel="stylesheet" href="styles.css">  <!-- Link to the stylesheet for design -->
 </head>
 <body>
-    <h1>GitHub Repository Summarizer</h1>
+    <!-- Header Section -->
+    <header>
+        <div class="navbar">
+            <a href="/" class="logo">My App</a>
+            <nav>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     
-    <div>
-        <label for="repoUrl">Paste GitHub Repository URL:</label>
-        <input type="text" id="repoUrl" placeholder="https://github.com/owner/repo_name" />
-        <button id="submitLink">Analyze Repository</button>
-    </div>
+    <!-- Main Content Section -->
+    <main>
+        <div class="content-container">
+            <h1>GitHub Repository Summarizer</h1>
+            
+            <div class="input-container">
+                <label for="repoUrl">Paste GitHub Repository URL:</label>
+                <input type="text" id="repoUrl" placeholder="https://github.com/owner/repo_name" />
+                <button id="submitLink">Analyze Repository</button>
+            </div>
 
-    <div id="summaryResult">
-        <!-- The result summary will be displayed here -->
-        <h3>Summary:</h3>
-        <p id="summaryText">Your summary will appear here after you submit a valid GitHub link.</p>
-    </div>
+            <div id="summaryResult" class="summary-result">
+                <h3>Summary:</h3>
+                <p id="summaryText">Your summary will appear here after you submit a valid GitHub link.</p>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 My App | All rights reserved.</p>
+    </footer>
 
-    <script src="page2.js"></script>
+    <script src="page2.js"></script>  <!-- JavaScript file for handling the form -->
 </body>
 </html>
 
