@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Sync - Summarizer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Fixed Header -->
+  <header>
+    <h1>Skill Sync - Code Summarizer</h1>
+  </header>
+
+  <main>
+    <h1>Summarizer</h1>
+    <p>Summarizing code and making it easier to interpret.</p>
+
+    <!-- GitHub Repo Submission Section -->
+    <section id="link-submission">
+      <h2>Submit a GitHub Repo</h2>
+      <p>Enter a valid GitHub repository link to generate a summary:</p>
+      <input type="url" id="linkInput" placeholder="Enter GitHub repo URL here" required>
+      <button id="submitLink">Submit</button>
+
+      <div id="linkList">
+        <h3>Submitted Repositories</h3>
+        <ul id="storedLinks"></ul>
+      </div>
+    </section>
+
+    <!-- Summary Display Section -->
+    <section id="summary-section">
+      <h2>Summary:</h2>
+      <div id="summary-result">No summary yet.</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Skill Sync. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript (Ensure correct path to script.js) -->
+  <script src="dist/script.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+"use strict";
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Existing elements
+    const submitButton = document.getElementById("submitLink");
+    const linkInput = document.getElementById("linkInput");
+    const summaryResult = document.getElementById("summary-result");
+    submitButton.addEventListener("click", async () => {
+        const repoUrl = linkInput.value.trim();
+        if (!repoUrl) {
+            alert("Please enter a GitHub repository URL.");
+            return;
+        }
+        try {
+            // Send a request to FastAPI
+            const response = await fetch("http://127.0.0.1:8000/analyze", { // Use FastAPI port
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ repo_url: repoUrl })
+            });
+            const result = await response.json();
+            
+            // Display summaries
+            if (result.summaries) {
+                summaryResult.innerHTML = "<h3>Code Summaries:</h3>";
+                Object.entries(result.summaries).forEach(([file, summary]) => {
+                    summaryResult.innerHTML += `<p><strong>${file}:</strong> ${summary}</p>`;
+                });
+            } else {
+                summaryResult.innerText = "No summaries found.";
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            summaryResult.innerText = "Failed to fetch summary.";
+        }
+    });
+});
+
+
+
+
+
+from fastapi import FastAPI
+from backend.github_analyzer import fetch_repo_name, list_repo_files, read_file_contents
+from backend.summarizer import Summarizer
+from pydantic import BaseModel
+from backend.git_authentication import router as auth_router
+#from backend.quiz_generator import app as quiz_app
+from fastapi.middleware.cors import CORSMiddleware
+app = FastAPI()
+
+
+# Add CORS middleware to allow frontend to call backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins (or specify frontend URL)
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
+
+app.include_router(auth_router) #authentication
+#app.mount("/quiz", quiz_app)    #generateing quiz
+# Global variable to store the summary
+Summary = {}
+
+@app.get("/")  # Home page
+def read_root():
+    return {"message": "Welcome to the AI Onboarding API!"}
+
+class RepoUrlRequest(BaseModel):
+    repo_url: str
+
+@app.post("/analyze")
+def analyze_repo(request: RepoUrlRequest): 
+    repo_url = request.repo_url
+    repo_data = fetch_repo_name(repo_url)
+    repo_name = repo_data["full_name"] 
+    code_files = list_repo_files(repo_name)
+
+    summarizer = Summarizer()
+    summaries = {}
+
+    for file_path in code_files: 
+        content = read_file_contents(repo_name, file_path)
+        if content: 
+            summary = summarizer.summarize(content) 
+            summaries[file_path] = summary
+    
+    user_info = {
+        "repo_name": repo_data["name"],
+        "owner": repo_data["owner"]["login"],
+        "description": repo_data.get("description", "No description"),
+        "stars": repo_data["stargazers_count"],
+        "language": repo_data["language"],
+        "code_files": code_files
+    }
+    global Summary
+    Summary = {
+        "summaries": summaries  # Include summaries in the response
+    }
+
+    return Summary

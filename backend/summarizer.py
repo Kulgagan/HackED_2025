@@ -16,7 +16,7 @@ class Summarizer:
         response = ollama.chat(
             model=self.engine,
             messages=[
-                {"role": "system", "content": "You are a code analyzer that summarizes code files. Once you analyze them, you tell the user a summary of what the code is doing, what its used for, and how it works. This summary should be 400 words long"},
+                {"role": "system", "content": "You are a code analyzer that summarizes code files. Once you analyze them, you tell the user a summary of what the code is doing, what its used for, and how it works. This summary should be 400 words long. You do not provide any formatting of any type. You simply output a paragrah explaining what the code does"},
                 {"role": "user", "content": prompt}
             ]
         )
