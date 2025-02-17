@@ -260,7 +260,7 @@ main {
   /* Optional: Style for buttons inside the box */
   #startQuiz {
     background-color: rgba(255, 250, 240, 1); /* Green color */
-    color: white;
+    color: rgb(0, 0, 0);
     border: none;
     padding: 10px 20px;
     font-size: 16px;
