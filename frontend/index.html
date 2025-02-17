@@ -36,7 +36,14 @@
         <p>At the core of our platform is a deep commitment to helping companies streamline their recruitment efforts. By offering a centralized hub for quizzes, summaries, and analytical insights, we ensure that hiring managers have all the necessary tools to evaluate candidates efficiently. Our platform doesn’t just speed up the hiring process—it also enhances its quality, reducing human error and subjectivity.
         We believe in fostering fair, unbiased hiring practices. By using data-driven insights, our platform helps mitigate common biases, ensuring that every candidate is evaluated based on their true abilities and potential. This commitment to fairness, efficiency, and transparency is what sets us apart as a trusted partner for companies looking to make smarter hiring decisions.</p>
     </section>
-</main>    
+    
+    <!-- Git Authentication Button -->
+    <section id="git-auth">
+        <h2>Git Authentication</h2>
+        <button id="git-auth-button">Authenticate with Git</button>
+    </section>
+
+  </main>    
 
   <footer>
     <p>&copy; 2025 Skill Sync. All rights reserved.</p>
@@ -44,5 +51,14 @@
   </footer>
 
   <script src="js/script.js"></script>
+  <script>
+    document.getElementById("git-auth-button").addEventListener("click", function() {
+        fetch('/authenticate', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => alert(data.message))
+        .catch(error => console.error('Error:', error));
+    });
+  </script>
 </body>
 </html>
+
