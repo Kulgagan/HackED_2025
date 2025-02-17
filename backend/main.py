@@ -3,10 +3,14 @@ from backend.github_analyzer import fetch_repo_name, list_repo_files, read_file_
 from backend.summarizer import Summarizer
 from pydantic import BaseModel
 from backend.git_authentication import router as auth_router
-import time
+from backend.quiz_generator import app as quiz_app
+
 
 app = FastAPI()
-app.include_router(auth_router) 
+app.include_router(auth_router) #authentication
+app.mount("/quiz", quiz_app)    #generateing quiz
+# Global variable to store the summary
+Summary = {}
 
 @app.get("/")  # Home page
 def read_root():
@@ -39,6 +43,7 @@ def analyze_repo(request: RepoUrlRequest):
         "language": repo_data["language"],
         "code_files": code_files
     }
+    global Summary
     Summary = {
         "summaries": summaries  # Include summaries in the response
     }
