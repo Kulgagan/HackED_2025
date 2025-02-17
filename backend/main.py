@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from backend.github_analyzer import fetch_repo_name, list_repo_files, read_file_contents
 from backend.summarizer import Summarizer
 from pydantic import BaseModel
-from git_authentication import router as auth_router
+from backend.git_authentication import router as auth_router
 import time
 
 app = FastAPI()
