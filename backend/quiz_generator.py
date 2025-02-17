@@ -55,9 +55,10 @@ def parse_quiz(response):
 @app.get("/generate-quiz/")
 def generate_quiz():
     global Summary  # Access the global Summary variable
+    global generated_quiz
 
     if not Summary:
-        raise HTTPException(status_code=404, detail="No summary available. Please analyze a repository first.")
+        raise HTTPException(status_code=404, detail = "No summary available. Please analyze a repository first.")
 
     response = ollama.chat(
         model='llama3.1',
@@ -74,5 +75,60 @@ def generate_quiz():
 
     if not quiz:
         raise HTTPException(status_code = 500, detail = "Failed to generate quiz from response")
+    
+    generated_quiz.clear()
+    generated_quiz.extend(quiz)
 
     return {"quiz": quiz, "total_questions": len(quiz)}
+
+@app.get("/get-quiz/")
+def get_quiz():
+    '''
+    sends quiz questions and options to the frontend (without answers).
+    '''
+    if not generated_quiz:
+        raise HTTPException(status_code = 404, detail = "No quiz available.")
+    
+    for item in generated_quiz:
+        quiz_for_frontend = [
+            {
+                "question": item["question"],
+                "options": item["options"]
+        }]
+
+    return{"quiz": quiz_for_frontend, "total_questions": len(quiz_for_frontend)}
+
+@app.post("/submit-answers/")
+def submit_answers(user_answers: UserAnswers):
+
+    if not generated_quiz:
+        raise HTTPException(status_code = 404, detail = "No quiz available")
+    
+    if len(user_answers.answers) != len(generated_quiz):
+        raise HTTPException(status_code = 404, detail = "Not enough answers for questions")
+    
+    correct_count = 0
+    results = []
+
+    for i in range(len(user_answers.answers)):
+        user_answer = user_answers.answers[i].upper()
+        correct_answer = generated_quiz[i]['answer']
+
+        is_correct = user_answer == correct_answer
+
+        is_correct = user_answer == correct_answer
+        if is_correct:
+            correct_count += 1
+        
+        results.append({
+            "question": generated_quiz[i]["question"],
+            "user_answer": user_answer,
+            "correct_answer": correct_answer,
+            "is_correct": is_correct
+        })
+
+        return {
+            "score": correct_count,
+            "total_questions": len(generate_quiz),
+            "results": results
+        }
