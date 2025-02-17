@@ -300,7 +300,7 @@ main {
   
   /* Authentication Button Styles */
   #authButton {
-    background-color: #rgba(50,61,68,255); /* Green color */
+    background-color: rgba(50,61,68,255); /* Green color */
     color: white;
     border: none;
     padding: 10px 20px;
