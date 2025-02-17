@@ -67,7 +67,7 @@ def generate_quiz():
         model='llama3.3',
         messages = [{"role": "system", "content": "You are a quiz generator "},
                     {"role": "user", "content": f"Generate a  multiple choice practice quiz based on this code summary:\n\n"
-                                                  f"{Summary}"
+                                                  f"{Sample_summary}"
                                                   f"Provide exactly 5 multiple choice questions with 4 options (A, B, C, D). With the question starting with 'Q: '"
                                                   f"After each question, state the correct answer in this format: \n"
                                                   f"'Answer X: ' where X is A, B, C, or D."
@@ -116,8 +116,6 @@ def submit_answers(user_answers: UserAnswers):
     for i in range(len(user_answers.answers)):
         user_answer = user_answers.answers[i].upper()
         correct_answer = generated_quiz[i]['answer']
-
-        is_correct = user_answer == correct_answer
 
         is_correct = user_answer == correct_answer
         if is_correct:
