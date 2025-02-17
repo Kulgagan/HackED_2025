@@ -48,7 +48,7 @@ def parse_quiz(response):
     for i in range(len(questions)):
 
         quiz.append({
-            "questions": questions[i],
+            "question": questions[i],
             "options": options[i] if i < len(options) else [],
             "answer": correct_answers[i] if i < len(correct_answers) else None
         }
