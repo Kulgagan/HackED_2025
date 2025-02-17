@@ -101,10 +101,5 @@ def submit_answers(user_answers: UserAnswers):
 
         if user_answer == correct_answer:
             score += 1
-<<<<<<< HEAD
-=======
-        
-        i += 1
->>>>>>> 05d526121d2c08f5cc74bda232d037a6bc61040c
 
     return {"score": score, "total": len(correct_answers), "correct_answers": correct_answers, "user_answers": user_answers.answers}
