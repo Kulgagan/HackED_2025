@@ -3,74 +3,79 @@ body, html {
     font-family: "League Spartan", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgba(245, 243, 235, 255); /* Lighter than the header */
+    background-color: rgba(255, 250, 240, 1); /* Lighter than the header */
     color: black;
     height: 100%;
     overflow-x: hidden;
-  }
-  
-  /* Header */
-  #banner {
+}
+
+/* Header */
+#banner {
     background-color: rgba(241, 239, 231, 255); /* Header Color */
-    padding: 20px;
-    text-align: center;
-    position: fixed;
+    height: 100px; /* Default height */
     width: 100%;
+    position: fixed;
     top: 0;
+    left: 0;
     z-index: 1000;
     border-bottom: 2px solid rgba(220, 218, 210, 255); /* Subtle separation */
-  }
-  
-  #logo {
-    max-width: 180px;
-  }
-  
-  /* Navigation Buttons */
-  #nav-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Logo inside the header */
+#logo {
+    max-width: 180px; /* Logo size */
+}
+
+/* Navigation Buttons */
+#nav-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
-    padding: 15px 0;
+    padding: 10px 0; /* Adjusted for smaller buttons */
     background-color: rgba(241, 239, 231, 255); /* Same as header */
     position: fixed;
     width: 100%;
     top: 105px; /* Ensures buttons aren't cut off */
     z-index: 999;
-  }
-  
-  .nav-button {
-    font-size: 18px;
+}
+
+/* Smaller buttons */
+.nav-button {
+    font-size: 14px; /* Smaller font size */
     font-weight: bold;
     color: black;
     background-color: white;
     border: 2px solid black;
-    padding: 20px 50px;
+    padding: 10px 30px; /* Smaller padding */
     text-decoration: none;
     transition: 0.3s;
     cursor: pointer;
-  }
-  
-  .nav-button:hover {
+}
+
+/* Hover effect for buttons */
+.nav-button:hover {
     background-color: black;
     color: white;
-  }
-  
-  /* Main Content */
-  main {
+}
+
+/* Main Content */
+main {
     margin-top: 160px; /* Adjusted to avoid buttons being cut off */
     padding: 20px;
     min-height: 70vh;
-  }
-  
-  /* Footer */
-  footer {
-    background-color: rgba(225, 223, 215, 255); /* Slightly darker than header */
+}
+
+/* Footer */
+footer {
+    background-color: rgba(250,235,215,1.00); /* Slightly darker than header */
     padding: 10px;
     text-align: center;
     position: relative;
     bottom: 0;
     width: 100%;
     border-top: 2px solid rgba(200, 198, 190, 255); /* Subtle separation */
-  }
-  
+}
