@@ -93,12 +93,12 @@ def get_quiz():
     if not generated_quiz:
         raise HTTPException(status_code = 404, detail = "No quiz available.")
     
-    for item in generated_quiz:
-        quiz_for_frontend = [
-            {
-                "question": item["question"],
-                "options": item["options"]
-        }]
+    quiz_for_frontend = [
+        {
+            "question": item["question"],
+            "options": item["options"]
+    } for item in generated_quiz
+    ]
 
     return{"quiz": quiz_for_frontend, "total_questions": len(quiz_for_frontend)}
 
