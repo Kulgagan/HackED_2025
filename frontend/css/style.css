@@ -1,83 +1,76 @@
-/* Import League Spartan font */
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
-
-/* =========================
-   Global & Body
-   ========================= */
-body {
+/* General Reset */
+body, html {
+    font-family: "League Spartan", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f6f1; /* Light beige background */
-    overflow-x: hidden;        /* Prevent horizontal scrolling */
-    font-family: 'League Spartan', sans-serif;
-}
-
-/* =========================
-   Header (Banner)
-   ========================= */
-#banner {
+    background-color: rgba(245, 243, 235, 255); /* Lighter than the header */
+    color: black;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Header */
+  #banner {
+    background-color: rgba(241, 239, 231, 255); /* Header Color */
+    padding: 20px;
+    text-align: center;
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 150px;
-    background-color: #f1efe7;  /* Slightly lighter beige for header */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 50px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: height 0.3s ease;
+    top: 0;
     z-index: 1000;
-}
-
-/* Logo inside header */
-#logo {
-    height: 120px;
-    transition: height 0.3s ease;
-}
-
-/* Navigation buttons below the logo */
-#navigation-buttons {
+    border-bottom: 2px solid rgba(220, 218, 210, 255); /* Subtle separation */
+  }
+  
+  #logo {
+    max-width: 180px;
+  }
+  
+  /* Navigation Buttons */
+  #nav-buttons {
     display: flex;
-    gap: 20px;  /* Space between buttons */
-    margin-top: 20px;  /* Space from the logo */
-}
-
-/* Style for the navigation buttons */
-.nav-btn {
-    background-color: #fff;  /* White background */
-    color: #000;             /* Black text */
-    font-family: 'League Spartan', sans-serif;
-    font-size: 16px;
-    padding: 12px 18px;
-    border: 1px solid #ccc;  /* Subtle border */
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    background-color: rgba(241, 239, 231, 255); /* Same as header */
+    position: fixed;
+    width: 100%;
+    top: 105px; /* Ensures buttons aren't cut off */
+    z-index: 999;
+  }
+  
+  .nav-button {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    padding: 20px 50px;
+    text-decoration: none;
+    transition: 0.3s;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-/* Hover effect for the buttons */
-.nav-btn:hover {
-    background-color: #ddd;
-}
-
-/* =========================
-   Main Content
-   ========================= */
-main {
-    margin-top: 150px; /* Push content below fixed header */
+  }
+  
+  .nav-button:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  /* Main Content */
+  main {
+    margin-top: 160px; /* Adjusted to avoid buttons being cut off */
     padding: 20px;
-    min-height: 100vh;
+    min-height: 70vh;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: rgba(225, 223, 215, 255); /* Slightly darker than header */
+    padding: 10px;
     text-align: center;
-}
-
-/* =========================
-   Footer
-   ========================= */
-footer {
-    background-color: #e2ddc9; /* Darker beige than header */
-    text-align: center;
-    padding: 20px;
-}
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    border-top: 2px solid rgba(200, 198, 190, 255); /* Subtle separation */
+  }
+  
