@@ -38,18 +38,8 @@
     </section>
     
      <!-- Authentication Button Section -->
-     <section id="auth-section">
-        <div class="auth-container">
-          <button id="authButton">Authenticate</button>
-        </div>
-      </section>
   
     </main>
-  
-    <!-- White Box Below Sections -->
-    <section id="info-box" class="info-box">
-      <p>This is a new section that will be inside the white box with rounded edges. It will display additional information or any content you may want to add.</p>
-    </section> 
 
   <footer>
     <p>&copy; 2025 Skill Sync. All rights reserved.</p>
@@ -57,14 +47,6 @@
   </footer>
 
   <script src="dist/script.js"></script>
-  <script>
-    document.getElementById("git-auth-button").addEventListener("click", function() {
-        fetch('/authenticate', { method: 'POST' })
-        .then(response => response.json())
-        .then(data => alert(data.message))
-        .catch(error => console.error('Error:', error));
-    });
-  </script>
 </body>
 </html>
 
