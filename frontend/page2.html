@@ -1,53 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skill Sync - Summarizer</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repository Summarizer</title>
+    <link rel="stylesheet" href="styles.css">  <!-- Link to the stylesheet for design -->
 </head>
 <body>
-
-  <!-- Fixed Header -->
-  <header id="banner">
-    <img id="logo" src="images/logo.png" alt="Skill Sync Logo">
-  </header>
-
-  <!-- Navigation Buttons -->
-  <nav id="nav-buttons">
-    <a href="index.html" class="nav-button">Home</a>
-    <a href="page1.html" class="nav-button">Practice Quizzes</a>
-    <a href="page2.html" class="nav-button">Summarizer</a>
-    <a href="page3.html" class="nav-button">Analytics</a>
-  </nav>
-
-  <main>
-    <h1>Summarizer</h1>
-    <p>Summarizing code and making it easier to interpret.</p>
-
-    <section id="link-submission">
-        <h2>Submit a GitHub Repo</h2>
-        <p>Enter a valid GitHub repository link to generate a summary:</p>
-        <input type="url" id="linkInput" placeholder="Enter GitHub repo URL here" required>
-        <button id="submitLink">Submit</button>
-
-        <div id="linkList">
-          <h3>Submitted Repositories</h3>
-          <ul id="storedLinks"></ul>
+    <!-- Header Section -->
+    <header>
+        <div class="navbar">
+            <a href="/" class="logo">My App</a>
+            <nav>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-    </section>
+    </header>
+    
+    <!-- Main Content Section -->
+    <main>
+        <div class="content-container">
+            <h1>GitHub Repository Summarizer</h1>
+            
+            <div class="input-container">
+                <label for="repoUrl">Paste GitHub Repository URL:</label>
+                <input type="text" id="repoUrl" placeholder="https://github.com/owner/repo_name" />
+                <button id="submitLink">Analyze Repository</button>
+            </div>
 
-    <section id="summary-section">
-        <h2>Summary:</h2>
-        <div id="summary-result">No summary yet.</div>
-    </section>
-  </main>
+            <div id="summaryResult" class="summary-result">
+                <h3>Summary:</h3>
+                <p id="summaryText">Your summary will appear here after you submit a valid GitHub link.</p>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 My App | All rights reserved.</p>
+    </footer>
 
-  <footer>
-    <p>&copy; 2025 Skill Sync. All rights reserved.</p>
-  </footer>
-
-  <script src="dist/script.js"></script>
-
+    <script src="page2.js"></script>  <!-- JavaScript file for handling the form -->
 </body>
 </html>
+

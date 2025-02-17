@@ -1,109 +1,52 @@
 "use strict";
 
+// Wait for the DOM to load
 document.addEventListener("DOMContentLoaded", () => {
-    // 🎯 GitHub Repository Summarizer Elements
-    const submitButton = document.getElementById("submitLink") as HTMLButtonElement;
-    const linkInput = document.getElementById("linkInput") as HTMLInputElement;
-    const summaryResult = document.getElementById("summary-result") as HTMLDivElement;
+    const submitButton = document.getElementById("submitLink") as HTMLButtonElement | null;
+    const repoUrlInput = document.getElementById("repoUrl") as HTMLInputElement | null;
+    const summaryResult = document.getElementById("summaryResult") as HTMLDivElement | null;
+    const summaryText = document.getElementById("summaryText") as HTMLParagraphElement | null;
 
-    // 🎯 Quiz Generator Elements
-    const startQuizBtn = document.getElementById("startQuiz") as HTMLButtonElement;
-    const quizContainer = document.getElementById("quizContainer") as HTMLDivElement;
-    const questionContainer = document.getElementById("questionContainer") as HTMLDivElement;
-    const quizForm = document.getElementById("quizForm") as HTMLFormElement;
-    const quizResults = document.getElementById("quizResults") as HTMLDivElement;
-    const scoreOutput = document.getElementById("scoreOutput") as HTMLParagraphElement;
+    if (!submitButton || !repoUrlInput || !summaryResult || !summaryText) {
+        console.error("Error: Missing elements.");
+        return;
+    }
 
-    let quizData: { questions: string; options: string[]; answer: string }[] = [];
-
-    /** 🟢 GitHub Repo Summarizer Logic */
+    // Handle the button click event
     submitButton.addEventListener("click", async () => {
-        const repoUrl = linkInput.value.trim();
+        const repoUrl = repoUrlInput.value.trim();
+        
         if (!repoUrl) {
             alert("Please enter a GitHub repository URL.");
             return;
         }
 
+        // Mock API call (you will replace this with the actual backend call later)
         try {
-            const response = await fetch("http://127.0.0.1:8000/analyze", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ repo_url: repoUrl }),
-            });
+            // Here we are simulating a backend call, which you would replace with an actual API call
+            const response = await simulateRepoAnalysis(repoUrl);
 
-            const result = await response.json();
-
-            if (result.summaries) {
-                summaryResult.innerHTML = "<h3>Code Summaries:</h3>";
-                Object.entries(result.summaries).forEach(([file, summary]) => {
-                    summaryResult.innerHTML += `<p><strong>${file}:</strong> ${summary}</p>`;
-                });
+            // Display the returned summary or placeholder text
+            if (response && response.summary) {
+                summaryText.innerHTML = response.summary;
             } else {
-                summaryResult.innerText = "No summaries found.";
+                summaryText.innerHTML = "Could not fetch summary. Please try again.";
             }
         } catch (error) {
             console.error("Error:", error);
-            summaryResult.innerText = "Failed to fetch summary.";
+            summaryText.innerHTML = "An error occurred while analyzing the repository.";
         }
-    });
-
-    /** 🟢 Quiz Generator Logic */
-    startQuizBtn.addEventListener("click", async () => {
-        try {
-            const response = await fetch("http://127.0.0.1:8000/generate-quiz/");
-            const data = await response.json();
-            quizData = data.quiz;
-
-            displayQuiz(quizData);
-        } catch (error) {
-            console.error("Error fetching quiz:", error);
-        }
-    });
-
-    function displayQuiz(quiz: { questions: string; options: string[]; answer: string }[]) {
-        questionContainer.innerHTML = "";
-        quizContainer.classList.remove("hidden");
-
-        quiz.forEach((q, index) => {
-            const questionDiv = document.createElement("div");
-            questionDiv.classList.add("question-block");
-
-            questionDiv.innerHTML = `
-                <p><strong>${q.questions}</strong></p>
-                ${q.options
-                    .map(
-                        (option) => `
-                    <label>
-                        <input type="radio" name="question${index}" value="${option}">
-                        ${option}
-                    </label><br>
-                `
-                    )
-                    .join("")}
-            `;
-
-            questionContainer.appendChild(questionDiv);
-        });
-    }
-
-    quizForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let score = 0;
-
-        quizData.forEach((q, index) => {
-            const selectedOption = document.querySelector(
-                `input[name="question${index}"]:checked`
-            ) as HTMLInputElement;
-
-            if (selectedOption) {
-                const userAnswer = selectedOption.value;
-                if (userAnswer.startsWith(q.answer)) {
-                    score++;
-                }
-            }
-        });
-
-        quizResults.classList.remove("hidden");
-        scoreOutput.innerText = `You scored ${score} out of ${quizData.length}!`;
     });
 });
+
+// Simulated backend call (mock function to simulate the backend response)
+async function simulateRepoAnalysis(repoUrl: string): Promise<any> {
+    // This is just a mock response simulating what you'd get from the backend
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({
+                summary: `Summary for repository: ${repoUrl} (mock). This would be the content returned by your backend summarizer.`
+            });
+        }, 1000); // Simulate a 1-second delay
+    });
+}

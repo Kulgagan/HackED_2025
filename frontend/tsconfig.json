@@ -1,10 +1,11 @@
 {
-    "compilerOptions": {
+  "compilerOptions": {
       "target": "es6",
       "module": "es6",
       "outDir": "./dist",
       "rootDir": "./ts",
-      "strict": true
-    },
-    "include": ["ts"]
-  }
+      "strict": true,
+      "lib": ["es2017", "dom"]  // ✅ Add this to support Object.entries() and DOM features
+  },
+  "include": ["ts"]
+}
