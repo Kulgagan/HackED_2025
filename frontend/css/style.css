@@ -230,6 +230,21 @@ main {
     word-wrap: break-word;
 }
 
+/* Style for the new white summary box with rounded edges */
+.summary-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px; /* Rounded edges */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
+    margin-top: 20px;
+  }
+  
+  /* Optional: Style for summary content inside the box */
+  #summary-result {
+    font-size: 1.2em;
+    color: #333;
+  }
+  
 /* Footer */
 footer {
     background-color: rgba(250,235,215,1.00); /* Slightly darker than header */
