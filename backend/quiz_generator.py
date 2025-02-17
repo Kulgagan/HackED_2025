@@ -115,9 +115,3 @@ def submit_answers(user_answers: UserAnswers):
         i += 1
 
     return {"score": score, "total": len(correct_answers), "correct_answers": correct_answers, "user_answers": user_answers.answers}
-
-
-
-
-
-
