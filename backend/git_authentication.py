@@ -33,9 +33,9 @@ async def github_callback(code: str):
 
     async with httpx.AsyncClient() as client:
         response = await client.post(token_url, headers=headers, data=data)
-        token_data = response.json()  # ✅ Fixed: Added parentheses to `json()`
+        token_data = response.json()
 
-    access_token = token_data.get("access_token")  # ✅ Fixed key name
+    access_token = token_data.get("access_token") 
 
     if not access_token:
         return JSONResponse(status_code=400, content={"error": "Failed to authenticate"})
