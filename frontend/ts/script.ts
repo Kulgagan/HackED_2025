@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const submitButton = document.getElementById("submitLink");
-    const repoUrlInput = document.getElementById("repoUrl");
-    const summaryResult = document.getElementById("summaryResult");
-    const summaryText = document.getElementById("summaryText");
+    const submitButton = document.getElementById("submitLink") as HTMLButtonElement;
+    const repoUrlInput = document.getElementById("repoUrl") as HTMLInputElement;
+    const summaryResult = document.getElementById("summaryResult") as HTMLElement;
+    const summaryText = document.getElementById("summaryText") as HTMLElement;
   
     if (!submitButton || !repoUrlInput || !summaryResult || !summaryText) {
       console.error("Error: Missing elements.");
@@ -35,7 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
   // Simulated API call for mock functionality
-  async function simulateRepoAnalysis(repoUrl) {
+  interface RepoAnalysisResponse {
+    summary: string;
+  }
+  
+  async function simulateRepoAnalysis(repoUrl: string): Promise<RepoAnalysisResponse> {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
@@ -44,4 +48,5 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1000);
     });
   }
+  
   
