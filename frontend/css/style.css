@@ -7,51 +7,39 @@ body, html {
     color: black;
     height: 100%;
     overflow-x: hidden;
-  }
-  
-  /* Header */
-  #banner {
+}
+
+/* Header */
+#banner {
     background-color: rgba(241, 239, 231, 255); /* Header Color */
-    padding: 20px;
-    text-align: center;
-    position: fixed;
+    height: 100px; /* Default height */
     width: 100%;
+    position: fixed;
     top: 0;
+    left: 0;
     z-index: 1000;
     border-bottom: 2px solid rgba(220, 218, 210, 255); /* Subtle separation */
-  }
-  
-  #logo {
-    max-width: 180px;
-  }
+    transition: height 0.3s ease; /* Smooth transition for shrinking */
+}
 
-  .content-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px; /* Adjust as necessary */
-  }
-  
-  /* Style the text content */
-  .text-content {
-    flex: 1;
-    padding-right: 20px; /* Space between text and image */
-  }
-  
-  /* Style the image content */
-  .image-content {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .image-content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px; /* Optional for rounded corners */
-  }
-  
-  /* Navigation Buttons */
-  #nav-buttons {
+/* Shrunk Header */
+#banner.shrink {
+    height: 60px; /* Reduced height */
+}
+
+/* Logo inside the header */
+#logo {
+    max-width: 180px;
+    transition: max-width 0.3s ease; /* Smooth transition for shrinking */
+}
+
+/* Shrunk Logo */
+#logo.shrink-logo {
+    max-width: 120px; /* Reduced logo size */
+}
+
+/* Navigation Buttons */
+#nav-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,9 +50,15 @@ body, html {
     width: 100%;
     top: 105px; /* Ensures buttons aren't cut off */
     z-index: 999;
-  }
-  
-  .nav-button {
+    transition: padding 0.3s ease; /* Smooth transition for shrinking */
+}
+
+/* Shrunk Navigation Buttons */
+#nav-buttons.shrink-nav {
+    padding: 10px 0; /* Reduced padding for nav buttons */
+}
+
+.nav-button {
     font-size: 18px;
     font-weight: bold;
     color: black;
@@ -74,41 +68,27 @@ body, html {
     text-decoration: none;
     transition: 0.3s;
     cursor: pointer;
-  }
-  
-  .nav-button:hover {
+}
+
+/* Shrink nav button text size when the header shrinks */
+#nav-buttons.shrink-nav .nav-button {
+    font-size: 14px; /* Smaller font size for buttons */
+}
+
+.nav-button:hover {
     background-color: black;
     color: white;
-  }
-  
-  /* Main Content */
-  main {
+}
+
+/* Main Content */
+main {
     margin-top: 160px; /* Adjusted to avoid buttons being cut off */
     padding: 20px;
     min-height: 70vh;
-  }
-  /* Shrinking Header Effect */
-#banner.shrink {
-    padding: 10px; /* Reduce padding to make the header smaller */
-    transition: padding 0.3s ease-in-out;
-}
-/* Shrunk state for header */
-.shrink {
-    height: 60px; /* Reduced header height */
 }
 
-/* Shrunk state for the logo inside the header */
-.shrink-logo {
-    max-width: 120px; /* Reduced logo size */
-}
-
-/* Shrunk state for navigation buttons */
-.shrink-nav {
-    padding: 10px 0; /* Reduced padding for navigation buttons */
-}
-  
-  /* Footer */
-  footer {
+/* Footer */
+footer {
     background-color: rgba(250,235,215,1.00); /* Slightly darker than header */
     padding: 10px;
     text-align: center;
@@ -116,5 +96,4 @@ body, html {
     bottom: 0;
     width: 100%;
     border-top: 2px solid rgba(200, 198, 190, 255); /* Subtle separation */
-  }
-  
+}

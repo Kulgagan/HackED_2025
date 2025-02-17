@@ -1,23 +1,23 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", () => {
-    // Banner Shrinking Effect
+    // Banner and related elements
     const banner = document.getElementById("banner");
     const navButtons = document.getElementById("nav-buttons");
     const logo = document.getElementById("logo");
     // Adjust the size of header, logo, and nav buttons on scroll
     window.addEventListener("scroll", () => {
         const scrollPosition = window.scrollY;
-        if (scrollPosition > 10) {
-            // Shrink header and logo, and adjust the nav buttons' height
-            banner.style.height = "60px"; // Adjust header height when scrolled down
-            logo.style.maxWidth = "120px"; // Shrink logo
-            navButtons.style.padding = "10px 0"; // Reduce padding for the navigation buttons
+        if (scrollPosition > 100) {
+            // Add shrink classes when scrolling down
+            banner.classList.add("shrink");
+            logo.classList.add("shrink-logo");
+            navButtons.classList.add("shrink-nav");
         }
         else {
-            // Reset to original size when scrolled to top
-            banner.style.height = "80px"; // Reset header height
-            logo.style.maxWidth = "180px"; // Reset logo size
-            navButtons.style.padding = "15px 0"; // Reset nav buttons padding
+            // Remove shrink classes when scrolling back to top
+            banner.classList.remove("shrink");
+            logo.classList.remove("shrink-logo");
+            navButtons.classList.remove("shrink-nav");
         }
     });
 });
