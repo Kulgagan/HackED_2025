@@ -1,27 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Get elements with proper TypeScript type assertions
+    // Get elements with proper TS assertions
     const submitButton = document.getElementById("submitLink") as HTMLButtonElement | null;
     const linkInput = document.getElementById("linkInput") as HTMLInputElement | null;
     const summaryResult = document.getElementById("summary-result") as HTMLDivElement | null;
+    const gitAuthButton = document.getElementById("git-auth-button") as HTMLButtonElement | null;
 
     if (!submitButton || !linkInput || !summaryResult) {
         console.error("❌ Missing required elements in HTML.");
         return;
     }
 
-    document.getElementById("git-auth-button")?.addEventListener("click", async () => {
-        try {
-            const response = await fetch("/auth/github", { method: "GET" });
-            if (!response.ok) {
-                throw new Error("Failed to initiate authentication");
-            }
-            window.location.href = response.url;
-        } catch (error) {
-            console.error("Error authenticating with GitHub:", error);
-            alert("GitHub authentication failed. Please try again.");
-        }
+    // 👉 Simple direct-redirect approach for GitHub auth
+    gitAuthButton?.addEventListener("click", () => {
+        // If your FastAPI runs on localhost:8000, just point to the endpoint:
+        window.location.href = "http://127.0.0.1:8000/auth/github";
     });
-    
+
+    // Example of how you're handling the "Analyze" button
     submitButton.addEventListener("click", async () => {
         const repoUrl: string = linkInput.value.trim();
         if (!repoUrl) {
@@ -30,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            // Send request to FastAPI backend
             const response: Response = await fetch("http://127.0.0.1:8000/analyze", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -38,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             const result: { summaries?: Record<string, string> } = await response.json();
-
             // Display summaries
             if (result.summaries) {
                 summaryResult.innerHTML = "<h3>Code Summaries:</h3>";

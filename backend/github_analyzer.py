@@ -1,52 +1,49 @@
-from fastapi import FastAPI, HTTPException
-import requests 
-import base64
-from dotenv import load_dotenv
 import os
+import httpx
+from dotenv import load_dotenv
+from fastapi import APIRouter
+from fastapi.responses import RedirectResponse, JSONResponse
+
+router = APIRouter()
 load_dotenv()
-GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
-app = FastAPI()
 
+github_client_id = os.getenv('Client_ID')
+github_client_secret = os.getenv('Client_secrets')
+redirect_link = "http://localhost:8000/auth/callback"
 
-@app.post("/analyze")
-def fetch_repo_name(repo_url: str):
-    repo_name = repo_url.split("github.com/")[-1]   #this wouldnt work. Fetch from website
-    if not repo_name:
-        raise HTTPException(status_code=400, detail="Invalid GitHub Repo URL")
+@router.get("/auth/github")
+def github_login():
+    """
+    Redirects user to GitHub OAuth authentication page.
+    """
+    return RedirectResponse(
+        f"https://github.com/login/oauth/authorize"
+        f"?client_id={github_client_id}"
+        f"&redirect_uri={redirect_link}"
+        f"&scope=repo"
+    )
 
-    api_url = f"https://api.github.com/repos/{repo_name}"
-    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
-    response = requests.get(api_url, headers=headers)
+@router.get("/auth/callback")
+async def github_callback(code: str):
+    """
+    GitHub callback to exchange the `code` for an access token.
+    """
+    token_url = "https://github.com/login/oauth/access_token"
+    headers = {"Accept": "application/json"}
+    data = {
+        "client_id": github_client_id,
+        "client_secret": github_client_secret,
+        "code": code,
+        "redirect_uri": redirect_link,
+    }
 
-    # Debugging: Print the API response
+    async with httpx.AsyncClient() as client:
+        response = await client.post(token_url, headers=headers, data=data)
+        token_data = response.json()
 
-    if response.status_code != 200:
-        raise HTTPException(status_code=404, detail="Repo not found")
+    access_token = token_data.get("access_token") 
+    if not access_token:
+        return JSONResponse(status_code=400, content={"error": "Failed to authenticate"})
 
-    return response.json()
-
-
-def list_repo_files(repo_name: str):
-    """Lists Python and JavaScript files from GitHub repo."""
-    api_url = f"https://api.github.com/repos/{repo_name}/contents/"
-    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
-    response = requests.get(api_url, headers=headers)
-
-    # Debugging: Print the API response
-
-    if response.status_code != 200:
-        raise HTTPException(status_code=404, detail="Could not fetch repo contents")
-
-    files = response.json()
-    return [file["path"] for file in files if file["path"].endswith((".py", ".js"))]
-        
-def read_file_contents(repo_name: str, file_path: str): 
-    api_url = f"https://api.github.com/repos/{repo_name}/contents/{file_path}"
-    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
-    response = requests.get(api_url, headers=headers) 
-
-    if response.status_code != 200:
-        return None
-    
-    content = response.json().get("content", "")
-    return base64.b64decode(content).decode("utf-8")
+    # For testing, return the token or handle further logic
+    return {"access_token": access_token}
