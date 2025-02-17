@@ -52,8 +52,8 @@ body {
 /* Position the dropdown container on the right side of the header */
 .dropdown {
     position: absolute;
-    top: 52px;    /* 52px from the top of the header */
-    right: 50px;  /* 50px from the right side */
+    top: 520px;    /* 52px from the top of the header */
+    right: 500px;  /* 50px from the right side */
     z-index: 2000;
 }
 
