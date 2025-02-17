@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skill Sync - GitHub Repository Summarizer</title>
+  <title>Skill Sync - Practice Quizzes</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -22,27 +22,38 @@
   </nav>
 
   <main>
-    <h1>GitHub Repository Summarizer</h1>
-    <p>Submit a GitHub repository URL to receive a detailed summary of the codebase.</p>
+    <h1>Practice Quizzes</h1>
+    <p>Test your knowledge with interactive quizzes.</p>
 
-    <section id="github-url-section">
-      <h2>Analyze Your GitHub Repository</h2>
-      <label for="repoUrl">Paste GitHub Repository URL:</label>
-      <input type="text" id="repoUrl" placeholder="https://github.com/owner/repo_name" />
-      <button id="submitLink">Analyze Repository</button>
+    <section id="quiz-section">
+        <h2>Practice Quiz</h2>
+        <p>Click below to start the quiz.</p>
       
-      <div id="summaryResult" class="hidden">
-        <h3>Summary:</h3>
-        <p id="summaryText">Your summary will appear here after you submit a valid GitHub link.</p>
-      </div>
-    </section>
+        <button id="startQuiz">Start Quiz</button>
+      
+        <!-- Quiz Display Area -->
+        <div id="quizContainer" class="hidden">
+          <form id="quizForm">
+            <div id="questionContainer"></div>
+            <button type="submit">Submit Quiz</button>
+          </form>
+        </div>
+      
+        <!-- Results Display -->
+        <div id="quizResults" class="hidden">
+          <h3>Your Score:</h3>
+          <p id="scoreOutput"></p>
+        </div>
+      </section>
+      
+      <script src="js/quiz.js"></script>
+      
   </main>
 
   <footer>
     <p>&copy; 2025 Skill Sync. All rights reserved.</p>
   </footer>
 
-  <script src="js/page2.js"></script>
+  <script src="js/script.js"></script>
 </body>
-</html>
-
+</html>    
