@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Dict
 import ollama 
-from backend.main import Summary  # Import the global Summary from main
+#from backend.main import Summary  # Import the global Summary from main
 
 app = FastAPI()
 
