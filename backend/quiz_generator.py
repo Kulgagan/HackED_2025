@@ -6,6 +6,9 @@ from backend.main import Summary  # Import the global Summary from main
 
 app = FastAPI()
 
+Sample_summary = "**Summary of Code Analysis**\n\nThis GitHub code is for a Python script called \"Study Suggester\" that helps users improve their studying skills by suggesting various study techniques and providing in-depth information about each technique.\n\n**What it Does:**\n\nThe code fetches study techniques from a specified URL, parses the HTML content to extract relevant information, and presents it to the user in an interactive format. The script allows users to choose which study technique they want to learn more about and provides detailed descriptions of each method.\n\n**How it Works:**\n\n1. The script starts by introducing itself to the user and asking if they want to proceed.\n2. If the user agrees, the script fetches the HTML content from the specified URL using the `requests` library.\n3. It then uses BeautifulSoup (BS) to parse the HTML content and extract the titles and descriptions of study techniques.\n4. The extracted information is stored in a list of tuples, where each tuple contains the title and description of a study technique.\n5. The script presents the list of study techniques to the user, allowing them to choose which one they want to learn more about.\n6. Once a study technique is selected, the script displays its detailed description.\n7. After displaying the description, the script asks if the user wants to explore more options.\n\n**Key Features:**\n\n* Interactive interface that allows users to choose which study techniques they want to learn more about\n* Fetches study techniques from a specified URL and presents them in an interactive format\n* Provides detailed descriptions of each study technique\n\n**Code Quality and Readability:**\n\nThe code is well-structured, readable, and follows good coding practices. It uses descriptive variable names, comments, and clear function definitions. The script also handles potential errors when fetching the webpage content.\n\nOverall, this code is a useful tool for students or anyone looking to improve their studying skills by exploring various study techniques."
+
+
 class UserAnswers(BaseModel):
     answers: List[str]
 
@@ -61,7 +64,7 @@ def generate_quiz():
         raise HTTPException(status_code=404, detail = "No summary available. Please analyze a repository first.")
 
     response = ollama.chat(
-        model='llama3.1',
+        model='llama3.3',
         messages = [{"role": "system", "content": "You are a quiz generator "},
                     {"role": "user", "content": f"Generate a  multiple choice practice quiz based on this code summary:\n\n"
                                                   f"{Summary}"
