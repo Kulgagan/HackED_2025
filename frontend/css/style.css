@@ -1,12 +1,15 @@
+/* Import League Spartan font */
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
+
 /* =========================
    Global & Body
    ========================= */
-   body {
+body {
     margin: 0;
     padding: 0;
     background-color: #f9f6f1; /* Light beige background */
     overflow-x: hidden;        /* Prevent horizontal scrolling */
-    font-family: Arial, sans-serif;
+    font-family: 'League Spartan', sans-serif;
 }
 
 /* =========================
@@ -21,7 +24,7 @@
     background-color: #f1efe7;  /* Slightly lighter beige for header */
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding: 0 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: height 0.3s ease;
@@ -38,19 +41,20 @@
 .shrink {
     height: 80px !important;
 }
+
 .shrink #logo {
     height: 60px;
 }
 
 /* =========================
-   Dropdown Button and Container
+   Dropdown Container & Button
    ========================= */
-/* Position the entire dropdown container relative to the header */
+/* Position the dropdown container on the right side of the header */
 .dropdown {
     position: absolute;
-    top: 52px;    /* 52px from the top of the header */
-    left: 50px;   /* 50px from the left of the header */
-    z-index: 2000; /* Ensure it's on top */
+    top: 520px;    /* 52px from the top of the header */
+    right: 500px;  /* 50px from the right side */
+    z-index: 2000;
 }
 
 /* Style the Explore button */
@@ -70,7 +74,7 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    top: 100%; /* Immediately below the button */
+    top: 100%; /* Just below the button */
     left: 0;
     background-color: #fff;
     min-width: 180px;

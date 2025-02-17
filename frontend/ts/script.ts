@@ -3,35 +3,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = document.getElementById("banner") as HTMLElement;
     const dropdownBtn = document.getElementById("dropdown-btn") as HTMLElement;
     const dropdownContent = document.getElementById("dropdown-content") as HTMLElement;
-  
+
     if (!header || !dropdownBtn || !dropdownContent) {
-      console.error("Missing essential elements in the DOM.");
-      return;
+        console.error("Missing essential elements in the DOM.");
+        return;
     }
-  
+
     // Toggle the dropdown menu on button click
     dropdownBtn.addEventListener("click", (event: MouseEvent) => {
-      event.stopPropagation(); // Prevents the document click from immediately closing the dropdown
-      dropdownContent.classList.toggle("show");
+        event.stopPropagation(); // Prevent the click from bubbling up
+        dropdownContent.classList.toggle("show");
     });
-  
-    // Close the dropdown menu when clicking outside of it
+
+    // Close the dropdown when clicking outside of it
     document.addEventListener("click", (event: MouseEvent) => {
-      if (
-        !dropdownBtn.contains(event.target as Node) &&
-        !dropdownContent.contains(event.target as Node)
-      ) {
-        dropdownContent.classList.remove("show");
-      }
+        if (
+            !dropdownBtn.contains(event.target as Node) &&
+            !dropdownContent.contains(event.target as Node)
+        ) {
+            dropdownContent.classList.remove("show");
+        }
     });
-  
-    // Handle header shrinking on scroll
+
+    // Shrink header on scroll
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        header.classList.add("shrink");
-      } else {
-        header.classList.remove("shrink");
-      }
+        if (window.scrollY > 50) {
+            header.classList.add("shrink");
+        } else {
+            header.classList.remove("shrink");
+        }
     });
-  });
-  
+});
