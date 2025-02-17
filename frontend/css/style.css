@@ -160,7 +160,7 @@ main {
   }
   
   .summarizer-container button:hover {
-    background-color: #45a049;
+    background-color: rgba(255, 250, 240, 1);
   }
   
   #summaryResult {
@@ -259,7 +259,7 @@ main {
   
   /* Optional: Style for buttons inside the box */
   #startQuiz {
-    background-color: #4CAF50; /* Green color */
+    background-color: rgba(255, 250, 240, 1); /* Green color */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -270,7 +270,7 @@ main {
   
   /* Optional: Style for button hover effect */
   #startQuiz:hover {
-    background-color: #45a049;
+    background-color: rgba(255, 250, 240, 1);
   }
   
   /* Optional: Style for the quiz content inside the box */
